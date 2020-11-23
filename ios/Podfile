@@ -12,6 +12,9 @@ target 'AwesomeProject' do
   target 'AwesomeProjectTests' do
     inherit! :complete
     # Pods for testing
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   end
 
   # Enables Flipper.

@@ -1,16 +1,34 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {Left, List, ListItem, Text, Body} from 'native-base';
 
-function CategoryScreen({navigation}) {
+function CategoryScreen() {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Category Screen</Text>
-
-      <Button
-        title="Go to Category... again"
-        onPress={() => navigation.push('Category')}
-      />
-    </View>
+    <List>
+      <ListItem>
+        <Left>
+          <Text> شرحِ زیارات </Text>
+        </Left>
+        <Body>
+          <Text>(2)</Text>
+        </Body>
+      </ListItem>
+      <ListItem>
+        <Left>
+          <Text> شرحِ نہج البلاغہ </Text>
+        </Left>
+        <Body>
+          <Text>(5)</Text>
+        </Body>
+      </ListItem>
+      <ListItem>
+        <Left>
+          <Text> تفسیرِ قرآن </Text>
+        </Left>
+        <Body>
+          <Text>(3)</Text>
+        </Body>
+      </ListItem>
+    </List>
   );
 }
 
