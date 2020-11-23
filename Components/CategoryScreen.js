@@ -1,5 +1,5 @@
 import React from 'react';
-import {Left, List, ListItem, Text, Body} from 'native-base';
+import {Left, List, ListItem, Text, Body, Icon} from 'native-base';
 
 function CategoryScreen() {
   return (
@@ -9,7 +9,7 @@ function CategoryScreen() {
           <Text> شرحِ زیارات </Text>
         </Left>
         <Body>
-          <Text>(2)</Text>
+          <Icon name="chevron-back-outline" />
         </Body>
       </ListItem>
       <ListItem>
@@ -17,7 +17,7 @@ function CategoryScreen() {
           <Text> شرحِ نہج البلاغہ </Text>
         </Left>
         <Body>
-          <Text>(5)</Text>
+          <Icon name="chevron-back-outline" />
         </Body>
       </ListItem>
       <ListItem>
@@ -25,7 +25,7 @@ function CategoryScreen() {
           <Text> تفسیرِ قرآن </Text>
         </Left>
         <Body>
-          <Text>(3)</Text>
+          <Icon name="chevron-back-outline" />
         </Body>
       </ListItem>
     </List>

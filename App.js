@@ -14,6 +14,8 @@ import {
 } from 'native-base';
 import LatestScreen from './Components/LatestScreen';
 import CategoryScreen from './Components/CategoryScreen';
+import SubCategoryScreen from './Components/SubCategoryScreen';
+
 export default class TabsExample extends Component {
   render() {
     return (
@@ -27,13 +29,12 @@ export default class TabsExample extends Component {
           <Body>
             <Title>غدیری</Title>
           </Body>
-          <Right>
-            <Button transparent>
-              <Icon name="search" />
-            </Button>
-          </Right>
+          <Right />
         </Header>
         <Tabs>
+          <Tab heading="ا">
+            <SubCategoryScreen />
+          </Tab>
           <Tab heading="تازہ">
             <LatestScreen />
           </Tab>
