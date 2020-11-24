@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   Left,
@@ -12,14 +13,14 @@ import {
 } from 'native-base';
 import {View} from 'react-native';
 
-function LatestScreen() {
+const PlaylistScreen = () => {
   return (
     <Container>
       <Content>
         <List>
           <ListItem>
             <Left>
-              <Text> شرحِ زیارتِ جامعہ کبیرہ ، درس ۱، حصہ ۲</Text>
+              <Text> شرحِ زیارتِ جامعہ کبیرہ ، درس ۱</Text>
             </Left>
             <Right>
               <View style={{flexDirection: 'row'}}>
@@ -34,7 +35,7 @@ function LatestScreen() {
           </ListItem>
           <ListItem>
             <Left>
-              <Text> شرحِ نہج البلاغہ ، درس ۲۱ </Text>
+              <Text> شرحِ زیارتِ جامعہ کبیرہ ، درس ۱، حصہ ۲ </Text>
             </Left>
             <Right>
               <View style={{flexDirection: 'row'}}>
@@ -49,7 +50,7 @@ function LatestScreen() {
           </ListItem>
           <ListItem>
             <Left>
-              <Text> تفسیرِ سورہِ فجر، آیت ۲، درس ۱ </Text>
+              <Text> شرحِ زیارتِ جامعہ کبیرہ ، درس ۳ </Text>
             </Left>
             <Right>
               <View style={{flexDirection: 'row'}}>
@@ -66,6 +67,6 @@ function LatestScreen() {
       </Content>
     </Container>
   );
-}
+};
 
-export default LatestScreen;
+export default PlaylistScreen;

@@ -1,34 +1,50 @@
 import React from 'react';
-import {Left, List, ListItem, Text, Body, Icon} from 'native-base';
+import {
+  Left,
+  List,
+  ListItem,
+  Text,
+  Body,
+  Icon,
+  Container,
+  Content,
+} from 'native-base';
 
-function CategoryScreen() {
+function CategoryScreen({navigation}) {
   return (
-    <List>
-      <ListItem>
-        <Left>
-          <Text> شرحِ زیارات </Text>
-        </Left>
-        <Body>
-          <Icon name="chevron-back-outline" />
-        </Body>
-      </ListItem>
-      <ListItem>
-        <Left>
-          <Text> شرحِ نہج البلاغہ </Text>
-        </Left>
-        <Body>
-          <Icon name="chevron-back-outline" />
-        </Body>
-      </ListItem>
-      <ListItem>
-        <Left>
-          <Text> تفسیرِ قرآن </Text>
-        </Left>
-        <Body>
-          <Icon name="chevron-back-outline" />
-        </Body>
-      </ListItem>
-    </List>
+    <Container>
+      <Content>
+        <List>
+          <ListItem
+            onPress={() =>
+              navigation.navigate('SubCategory', {name: 'شرحِ زیارات'})
+            }>
+            <Left>
+              <Text> شرحِ زیارات </Text>
+            </Left>
+            <Body>
+              <Icon name="chevron-back-outline" />
+            </Body>
+          </ListItem>
+          <ListItem>
+            <Left>
+              <Text> شرحِ نہج البلاغہ </Text>
+            </Left>
+            <Body>
+              <Icon name="chevron-back-outline" />
+            </Body>
+          </ListItem>
+          <ListItem>
+            <Left>
+              <Text> تفسیرِ قرآن </Text>
+            </Left>
+            <Body>
+              <Icon name="chevron-back-outline" />
+            </Body>
+          </ListItem>
+        </List>
+      </Content>
+    </Container>
   );
 }
 

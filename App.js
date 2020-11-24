@@ -1,49 +1,41 @@
-import React, {Component} from 'react';
-import {I18nManager} from 'react-native';
-import {
-  Button,
-  Icon,
-  Left,
-  Container,
-  Header,
-  Body,
-  Title,
-  Tab,
-  Tabs,
-  Right,
-} from 'native-base';
-import LatestScreen from './Components/LatestScreen';
-import CategoryScreen from './Components/CategoryScreen';
+import React from 'react';
+import HomeTabNavigation from './Components/HomeTabNavigation';
 import SubCategoryScreen from './Components/SubCategoryScreen';
+import PlaylistScreen from './Components/PlaylistScreen';
+import {I18nManager} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Container} from 'native-base';
 
-export default class TabsExample extends Component {
-  render() {
-    return (
-      <Container>
-        <Header hasTabs>
-          <Left>
-            <Button transparent>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>غدیری</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Tabs>
-          <Tab heading="ا">
-            <SubCategoryScreen />
-          </Tab>
-          <Tab heading="تازہ">
-            <LatestScreen />
-          </Tab>
-          <Tab heading="مجموعہ">
-            <CategoryScreen />
-          </Tab>
-        </Tabs>
-      </Container>
-    );
-  }
+const Stack = createStackNavigator();
+
+function App() {
+  return (
+    <Container>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={HomeTabNavigation}
+            options={{
+              title: 'Ghadeeri',
+            }}
+          />
+          <Stack.Screen
+            name="SubCategory"
+            component={SubCategoryScreen}
+            options={({route}) => ({title: route.params.name})}
+          />
+          <Stack.Screen
+            name="Playlist"
+            component={PlaylistScreen}
+            options={({route}) => ({title: route.params.name})}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Container>
+  );
 }
 I18nManager.forceRTL(true);
+
+export default App;
