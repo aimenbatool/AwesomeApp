@@ -1,70 +1,66 @@
 import React from 'react';
-import {
-  Left,
-  Right,
-  List,
-  Button,
-  ListItem,
-  Text,
-  Icon,
-  Container,
-  Content,
-} from 'native-base';
+import * as nativeBase from 'native-base';
 import {View} from 'react-native';
 
 function LatestScreen() {
   return (
-    <Container>
-      <Content>
-        <List>
-          <ListItem>
-            <Left>
-              <Text> شرحِ زیارتِ جامعہ کبیرہ ، درس ۱، حصہ ۲</Text>
-            </Left>
-            <Right>
+    <nativeBase.Container>
+      <nativeBase.Content>
+        <nativeBase.List>
+          <nativeBase.ListItem>
+            <nativeBase.Left>
+              <nativeBase.Text>
+                {' '}
+                شرحِ زیارتِ جامعہ کبیرہ ، درس ۱، حصہ ۲
+              </nativeBase.Text>
+            </nativeBase.Left>
+            <nativeBase.Right>
               <View style={{flexDirection: 'row'}}>
-                <Button transparent>
-                  <Icon name="play" />
-                </Button>
-                <Button transparent>
-                  <Icon name="download" />
-                </Button>
+                <nativeBase.Button transparent>
+                  <nativeBase.Icon name="play" />
+                </nativeBase.Button>
+                <nativeBase.Button transparent>
+                  <nativeBase.Icon name="download" />
+                </nativeBase.Button>
               </View>
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text> شرحِ نہج البلاغہ ، درس ۲۱ </Text>
-            </Left>
-            <Right>
+            </nativeBase.Right>
+          </nativeBase.ListItem>
+          <nativeBase.ListItem>
+            <nativeBase.Left>
+              <nativeBase.Text> شرحِ نہج البلاغہ ، درس ۲۱ </nativeBase.Text>
+            </nativeBase.Left>
+            <nativeBase.Right>
               <View style={{flexDirection: 'row'}}>
-                <Button transparent>
-                  <Icon name="play" />
-                </Button>
-                <Button transparent>
-                  <Icon name="download" />
-                </Button>
+                <nativeBase.Button transparent>
+                  <nativeBase.Icon name="play" />
+                </nativeBase.Button>
+                <nativeBase.Button transparent>
+                  <nativeBase.Icon name="download" />
+                </nativeBase.Button>
               </View>
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text> تفسیرِ سورہِ فجر، آیت ۲، درس ۱ </Text>
-            </Left>
-            <Right>
+            </nativeBase.Right>
+          </nativeBase.ListItem>
+          <nativeBase.ListItem>
+            <nativeBase.Left>
+              <nativeBase.Text>
+                {' '}
+                تفسیرِ سورہِ فجر، آیت ۲، درس ۱{' '}
+              </nativeBase.Text>
+            </nativeBase.Left>
+            <nativeBase.Right>
               <View style={{flexDirection: 'row'}}>
-                <Button transparent>
-                  <Icon name="play" />
-                </Button>
-                <Button transparent>
-                  <Icon name="download" />
-                </Button>
+                <nativeBase.Button transparent>
+                  <nativeBase.Icon name="play" />
+                </nativeBase.Button>
+                <nativeBase.Button transparent>
+                  <nativeBase.Icon name="download" />
+                </nativeBase.Button>
               </View>
-            </Right>
-          </ListItem>
-        </List>
-      </Content>
-    </Container>
+            </nativeBase.Right>
+          </nativeBase.ListItem>
+        </nativeBase.List>
+      </nativeBase.Content>
+    </nativeBase.Container>
   );
 }
 
