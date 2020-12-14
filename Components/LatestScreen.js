@@ -37,64 +37,30 @@ const LatestScreen = () => {
     <nativeBase.Container>
       <nativeBase.Content>
         <nativeBase.List>
-          <nativeBase.ListItem>
-            <nativeBase.Left>
-              <nativeBase.Text>
-                {' '}
-                شرحِ زیارتِ جامعہ کبیرہ ، درس ۱، حصہ ۲
-              </nativeBase.Text>
-            </nativeBase.Left>
-            <nativeBase.Right>
-              <View style={{flexDirection: 'row'}}>
-                <nativeBase.Button
-                  transparent
-                  onPress={onButtonPressed}
-                  disabled={!isTrackPlayerInit}>
-                  {isPlaying ? (
-                    <nativeBase.Icon name="pause" />
-                  ) : (
-                    <nativeBase.Icon name="play" />
-                  )}
-                </nativeBase.Button>
-                <nativeBase.Button transparent>
-                  <nativeBase.Icon name="download" />
-                </nativeBase.Button>
-              </View>
-            </nativeBase.Right>
-          </nativeBase.ListItem>
-          <nativeBase.ListItem>
-            <nativeBase.Left>
-              <nativeBase.Text> شرحِ نہج البلاغہ ، درس ۲۱ </nativeBase.Text>
-            </nativeBase.Left>
-            <nativeBase.Right>
-              <View style={{flexDirection: 'row'}}>
-                <nativeBase.Button transparent>
-                  <nativeBase.Icon name="play" />
-                </nativeBase.Button>
-                <nativeBase.Button transparent>
-                  <nativeBase.Icon name="download" />
-                </nativeBase.Button>
-              </View>
-            </nativeBase.Right>
-          </nativeBase.ListItem>
-          <nativeBase.ListItem>
-            <nativeBase.Left>
-              <nativeBase.Text>
-                {' '}
-                تفسیرِ سورہِ فجر، آیت ۲، درس ۱{' '}
-              </nativeBase.Text>
-            </nativeBase.Left>
-            <nativeBase.Right>
-              <View style={{flexDirection: 'row'}}>
-                <nativeBase.Button transparent>
-                  <nativeBase.Icon name="play" />
-                </nativeBase.Button>
-                <nativeBase.Button transparent>
-                  <nativeBase.Icon name="download" />
-                </nativeBase.Button>
-              </View>
-            </nativeBase.Right>
-          </nativeBase.ListItem>
+          {tracks.map((track) => (
+            <nativeBase.ListItem key={track.id}>
+              <nativeBase.Left>
+                <nativeBase.Text> {track.title} </nativeBase.Text>
+              </nativeBase.Left>
+              <nativeBase.Right>
+                <View style={{flexDirection: 'row'}}>
+                  <nativeBase.Button
+                    transparent
+                    onPress={onButtonPressed}
+                    disabled={!isTrackPlayerInit}>
+                    {isPlaying ? (
+                      <nativeBase.Icon name="pause" />
+                    ) : (
+                      <nativeBase.Icon name="play" />
+                    )}
+                  </nativeBase.Button>
+                  <nativeBase.Button transparent>
+                    <nativeBase.Icon name="download" />
+                  </nativeBase.Button>
+                </View>
+              </nativeBase.Right>
+            </nativeBase.ListItem>
+          ))}
         </nativeBase.List>
       </nativeBase.Content>
     </nativeBase.Container>
