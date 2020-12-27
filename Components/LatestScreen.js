@@ -1,43 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import * as nativeBase from 'native-base';
 import {View} from 'react-native';
-import TrackPlayer from 'react-native-track-player';
-import tracks from '../utils/trackData';
+import tracksData from '../utils/trackData';
+import {usePlayerContext} from '../contexts/PlayerContext';
 
 const LatestScreen = () => {
-  //function to initialize the Track Player
-  const trackPlayerInit = async () => {
-    await TrackPlayer.setupPlayer();
-    await TrackPlayer.add(tracks);
-    return true;
-  };
-
-  const [isTrackPlayerInit, setIsTrackPlayerInit] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    const startPlayer = async () => {
-      let isInit = await trackPlayerInit();
-      setIsTrackPlayerInit(isInit);
-    };
-    startPlayer();
-  }, []);
-
-  const onButtonPressed = () => {
-    if (!isPlaying) {
-      TrackPlayer.play();
-      setIsPlaying(true);
-    } else {
-      TrackPlayer.pause();
-      setIsPlaying(false);
-    }
-  };
+  const playerContext = usePlayerContext();
 
   return (
     <nativeBase.Container>
       <nativeBase.Content>
         <nativeBase.List>
-          {tracks.map((track) => (
+          {tracksData.map((track) => (
             <nativeBase.ListItem key={track.id}>
               <nativeBase.Left>
                 <nativeBase.Text> {track.title} </nativeBase.Text>
@@ -46,13 +20,16 @@ const LatestScreen = () => {
                 <View style={{flexDirection: 'row'}}>
                   <nativeBase.Button
                     transparent
-                    onPress={onButtonPressed}
-                    disabled={!isTrackPlayerInit}>
-                    {isPlaying ? (
-                      <nativeBase.Icon name="pause" />
-                    ) : (
-                      <nativeBase.Icon name="play" />
-                    )}
+                    onPress={() => {
+                      playerContext.play({
+                        id: track.id,
+                        title: track.title,
+                        artwork: track.artwork,
+                        artist: track.artist,
+                        url: track.url,
+                      });
+                    }}>
+                    <nativeBase.Icon name="play" />
                   </nativeBase.Button>
                   <nativeBase.Button transparent>
                     <nativeBase.Icon name="download" />
