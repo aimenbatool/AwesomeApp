@@ -3,6 +3,7 @@ import * as nativeBase from 'native-base';
 import {View} from 'react-native';
 import tracksData from '../utils/trackData';
 import {usePlayerContext} from '../contexts/PlayerContext';
+import {play} from 'react-native-track-player';
 
 const LatestScreen = () => {
   const playerContext = usePlayerContext();
@@ -18,7 +19,10 @@ const LatestScreen = () => {
               </nativeBase.Left>
               <nativeBase.Right>
                 <View style={{flexDirection: 'row'}}>
-                  {playerContext.isPaused || playerContext.isEmpty ? (
+                  {playerContext.isPaused ||
+                  playerContext.isEmpty ||
+                  (playerContext.currentTrack &&
+                    playerContext.currentTrack.id !== track.id) ? (
                     <nativeBase.Button
                       transparent
                       onPress={() => {
