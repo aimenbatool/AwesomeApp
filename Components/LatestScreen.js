@@ -18,7 +18,7 @@ const LatestScreen = () => {
               </nativeBase.Left>
               <nativeBase.Right>
                 <View style={{flexDirection: 'row'}}>
-                  {(playerContext.isPaused || playerContext.isEmpty) && (
+                  {playerContext.isPaused || playerContext.isEmpty ? (
                     <nativeBase.Button
                       transparent
                       onPress={() => {
@@ -32,9 +32,7 @@ const LatestScreen = () => {
                       }}>
                       <nativeBase.Icon name="play" />
                     </nativeBase.Button>
-                  )}
-
-                  {playerContext.isPlaying && (
+                  ) : (
                     <nativeBase.Button
                       transparent
                       onPress={() => {

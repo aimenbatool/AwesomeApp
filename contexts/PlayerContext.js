@@ -40,6 +40,10 @@ export const PlayerContextProvider = (props) => {
       return;
     }
 
+    if (currentTrack && track.id !== currentTrack.id) {
+      await TrackPlayer.reset();
+    }
+
     console.log(JSON.stringify(track));
     await TrackPlayer.add([track]);
     setCurrentTrack(track);

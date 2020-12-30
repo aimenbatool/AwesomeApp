@@ -30,13 +30,11 @@ const MiniPlayer = () => {
           </View>
 
           <View style={styles.buttonContainer}>
-            {playerContext.isPaused && (
+            {playerContext.isPaused ? (
               <Button transparent onPress={() => playerContext.play()}>
                 <Icon style={styles.playButton} name="play" size={1} />
               </Button>
-            )}
-
-            {playerContext.isPlaying && (
+            ) : (
               <Button transparent onPress={() => playerContext.pause()}>
                 <Icon style={styles.playButton} name="pause" size={1} />
               </Button>
