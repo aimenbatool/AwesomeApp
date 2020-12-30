@@ -10,35 +10,48 @@ const MiniPlayer = () => {
     return null;
   }
 
-  // https://facebook.github.io/react-native/docs/assets/favicon.png
-  // const uri = playerContext.currentTrack.artwork;
   const uri = 'https://facebook.github.io/react-native/docs/assets/favicon.png';
 
   return (
     <Container style={styles.miniPlayer}>
       <Content>
         <View style={styles.trackDetails}>
-          <Thumbnail style={styles.thumbnail} square source={{uri: uri}} />
-          <Text numberOf Lines={1} style={styles.trackTitle}>
-            زیارت جامعہ کبیرہ، درس نمبر۱، حصہ ۲
-          </Text>
-          {playerContext.isPaused && (
-            <Button transparent onPress={() => playerContext.play()}>
-              <Icon style={styles.playButton} name="play" size={1} />
-            </Button>
-          )}
+          <View>
+            <Thumbnail style={styles.thumbnail} square source={{uri: uri}} />
+          </View>
 
-          {playerContext.isPlaying && (
-            <Button transparent onPress={() => playerContext.play()}>
-              <Icon style={styles.playButton} name="pause" size={1} />
-            </Button>
-          )}
+          <View style={styles.titleContainer}>
+            <Text numberOfLines={1} style={styles.trackTitle}>
+              {playerContext.currentTrack.title}
+            </Text>
+            <Text numberOfLines={1} style={styles.category}>
+              شرحِ زیارتِ جامعہ کبیرہ
+            </Text>
+          </View>
 
-          {playerContext.isStopped && (
-            <Button transparent onPress={() => null}>
-              <Icon style={styles.playButton} name="square" size={1} />
+          <View style={styles.buttonContainer}>
+            {playerContext.isPaused && (
+              <Button transparent onPress={() => playerContext.play()}>
+                <Icon style={styles.playButton} name="play" size={1} />
+              </Button>
+            )}
+
+            {playerContext.isPlaying && (
+              <Button transparent onPress={() => playerContext.pause()}>
+                <Icon style={styles.playButton} name="pause" size={1} />
+              </Button>
+            )}
+
+            {playerContext.isStopped && (
+              <Button transparent onPress={() => null}>
+                <Icon style={styles.playButton} name="square" size={1} />
+              </Button>
+            )}
+
+            <Button transparent onPress={() => playerContext.seekTo()}>
+              <Icon style={styles.playButton} name="play-skip-back" size={1} />
             </Button>
-          )}
+          </View>
         </View>
       </Content>
     </Container>
@@ -46,26 +59,39 @@ const MiniPlayer = () => {
 };
 
 let styles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: 'row',
+  },
   playButton: {
     color: '#353755',
     fontSize: 28,
   },
+  titleContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    width: '50%',
+    marginLeft: 18,
+  },
   trackTitle: {
-    flex: 1,
-    color: '#353755',
+    // flex: 1,
+    // color: '#353755',
     fontSize: 20,
-    marginLeft: 8,
+  },
+  category: {
+    fontSize: 10,
   },
   trackDetails: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   thumbnail: {
     borderRadius: 6,
   },
   miniPlayer: {
     width: '100%',
-    height: 120,
+    height: 140,
     backgroundColor: '#F5FAFA',
     position: 'absolute', //Here is the trick
     bottom: 0, //Here is the trick

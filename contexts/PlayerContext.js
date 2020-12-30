@@ -13,6 +13,7 @@ export const PlayerContext = React.createContext({
   currentTrack: null,
   play: () => null,
   pause: () => null,
+  seekTo: () => null,
 });
 
 export const PlayerContextProvider = (props) => {
@@ -38,8 +39,8 @@ export const PlayerContextProvider = (props) => {
       }
       return;
     }
-    console.log(track);
 
+    console.log(JSON.stringify(track));
     await TrackPlayer.add([track]);
     setCurrentTrack(track);
     await TrackPlayer.play();
@@ -47,6 +48,11 @@ export const PlayerContextProvider = (props) => {
 
   const pause = async () => {
     await TrackPlayer.pause();
+  };
+
+  const seekTo = async (amount = 30) => {
+    const position = await TrackPlayer.getPosition();
+    await TrackPlayer.seekTo(position + parseInt(amount, 10));
   };
 
   const value = {
@@ -57,6 +63,7 @@ export const PlayerContextProvider = (props) => {
     currentTrack,
     pause,
     play,
+    seekTo,
   };
   return (
     <PlayerContext.Provider value={value}>

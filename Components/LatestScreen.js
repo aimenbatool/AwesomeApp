@@ -18,19 +18,37 @@ const LatestScreen = () => {
               </nativeBase.Left>
               <nativeBase.Right>
                 <View style={{flexDirection: 'row'}}>
-                  <nativeBase.Button
-                    transparent
-                    onPress={() => {
-                      playerContext.play({
-                        id: track.id,
-                        title: track.title,
-                        artwork: track.artwork,
-                        artist: track.artist,
-                        url: track.url,
-                      });
-                    }}>
-                    <nativeBase.Icon name="play" />
-                  </nativeBase.Button>
+                  {(playerContext.isPaused || playerContext.isEmpty) && (
+                    <nativeBase.Button
+                      transparent
+                      onPress={() => {
+                        playerContext.play({
+                          id: track.id,
+                          title: track.title,
+                          artwork: track.artwork,
+                          artist: track.artist,
+                          url: track.url,
+                        });
+                      }}>
+                      <nativeBase.Icon name="play" />
+                    </nativeBase.Button>
+                  )}
+
+                  {playerContext.isPlaying && (
+                    <nativeBase.Button
+                      transparent
+                      onPress={() => {
+                        playerContext.pause();
+                      }}>
+                      <nativeBase.Icon name="pause" />
+                    </nativeBase.Button>
+                  )}
+
+                  {playerContext.isStopped && (
+                    <nativeBase.Button transparent onPress={() => null}>
+                      <nativeBase.Icon name="stop" />
+                    </nativeBase.Button>
+                  )}
                   <nativeBase.Button transparent>
                     <nativeBase.Icon name="download" />
                   </nativeBase.Button>

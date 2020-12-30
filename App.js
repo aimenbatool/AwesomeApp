@@ -9,7 +9,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Container} from 'native-base';
 import TrackPlayer from 'react-native-track-player';
 import {PlayerContextProvider} from './contexts/PlayerContext';
-import trackPlayerServices from './services/trackPlayerServices';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +18,17 @@ const App = () => {
   useEffect(() => {
     TrackPlayer.setupPlayer().then(() => {
       console.log('player is setup');
-      TrackPlayer.registerPlaybackService(() => trackPlayerServices);
+
+      TrackPlayer.updateOptions({
+        capabilities: [
+          TrackPlayer.CAPABILITY_PLAY,
+          TrackPlayer.CAPABILITY_PAUSE,
+          TrackPlayer.CAPABILITY_STOP,
+          TrackPlayer.CAPABILITY_JUMP_BACKWARD,
+          TrackPlayer.CAPABILITY_JUMP_FORWARD,
+        ],
+        jumpInterval: 30,
+      });
       setIsReady(true);
     });
   }, []);
