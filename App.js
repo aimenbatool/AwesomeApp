@@ -1,16 +1,10 @@
 import React, {useEffect} from 'react';
-import HomeTabNavigation from './Components/HomeTabNavigation';
-import SubCategoryScreen from './Components/SubCategoryScreen';
-import MiniPlayer from './Components/MiniPlayer';
-import PlaylistScreen from './Components/PlaylistScreen';
 import {I18nManager, ActivityIndicator} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import {Container} from 'native-base';
 import TrackPlayer from 'react-native-track-player';
 import {PlayerContextProvider} from './contexts/PlayerContext';
-
-const Stack = createStackNavigator();
+import MainStackNavigator from './Navigators/MainStackNavigator';
 
 const App = () => {
   const [isReady, setIsReady] = React.useState(false);
@@ -37,26 +31,7 @@ const App = () => {
       {isReady ? (
         <PlayerContextProvider>
           <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-              <Stack.Screen
-                name="Home"
-                component={HomeTabNavigation}
-                options={{
-                  title: 'Ghadeeri',
-                }}
-              />
-              <Stack.Screen
-                name="SubCategory"
-                component={SubCategoryScreen}
-                options={({route}) => ({title: route.params.name})}
-              />
-              <Stack.Screen
-                name="Playlist"
-                component={PlaylistScreen}
-                options={({route}) => ({title: route.params.name})}
-              />
-            </Stack.Navigator>
-            <MiniPlayer />
+            <MainStackNavigator />
           </NavigationContainer>
         </PlayerContextProvider>
       ) : (

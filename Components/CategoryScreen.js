@@ -20,7 +20,7 @@ function CategoryScreen({navigation}) {
               navigation.navigate('SubCategory', {name: 'شرحِ زیارات'})
             }>
             <Left>
-              <Text> شرحِ زیارات </Text>
+              <Text>aaa شرحِ زیارات </Text>
             </Left>
             <Body>
               <Icon name="chevron-back-outline" />

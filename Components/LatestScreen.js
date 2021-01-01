@@ -3,7 +3,6 @@ import * as nativeBase from 'native-base';
 import {View} from 'react-native';
 import tracksData from '../utils/trackData';
 import {usePlayerContext} from '../contexts/PlayerContext';
-import {play} from 'react-native-track-player';
 
 const LatestScreen = () => {
   const playerContext = usePlayerContext();
@@ -46,11 +45,11 @@ const LatestScreen = () => {
                     </nativeBase.Button>
                   )}
 
-                  {playerContext.isStopped && (
+                  {/* {playerContext.isStopped && (
                     <nativeBase.Button transparent onPress={() => null}>
                       <nativeBase.Icon name="stop" />
                     </nativeBase.Button>
-                  )}
+                  )} */}
                   <nativeBase.Button transparent>
                     <nativeBase.Icon name="download" />
                   </nativeBase.Button>
