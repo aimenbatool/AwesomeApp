@@ -3,7 +3,7 @@ import {
   createBottomTabNavigator,
   BottomTabBar,
 } from '@react-navigation/bottom-tabs';
-import LatestScreen from '../Components/LatestScreen';
+import LatestStackNavigator from './LatestStackNavigator';
 import CollectionStackNavigator from './CollectionStackNavigator';
 import MiniPlayer from '../Components/MiniPlayer';
 
@@ -21,17 +21,17 @@ function HomeTabNavigator() {
       initialRouteName="Latest"
       tabBarOptions={{
         activeTintColor: 'black',
-        labelStyle: {fontSize: 12},
+        labelStyle: {fontSize: 18},
       }}>
       <Tab.Screen
         name="Latest"
-        component={LatestScreen}
-        options={{tabBarLabel: 'تازہ'}}
+        component={LatestStackNavigator}
+        options={{title: 'تازہ'}}
       />
       <Tab.Screen
         name="Collection"
         component={CollectionStackNavigator}
-        options={{tabBarLabel: 'مجموعہ'}}
+        options={{title: 'مجموعہ'}}
       />
     </Tab.Navigator>
   );

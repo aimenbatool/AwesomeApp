@@ -2,10 +2,11 @@ import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {Thumbnail, Container, Content, View, Icon, Button} from 'native-base';
 import {usePlayerContext} from '../contexts/PlayerContext';
+import {useNavigation} from '@react-navigation/native';
 
 const MiniPlayer = () => {
-  console.log('MINI');
   const playerContext = usePlayerContext();
+  const navigation = useNavigation();
 
   if (playerContext.isEmpty || !playerContext.currentTrack) {
     return null;
@@ -14,7 +15,7 @@ const MiniPlayer = () => {
   const uri = 'https://facebook.github.io/react-native/docs/assets/favicon.png';
 
   return (
-    <Button>
+    <Button onPress={() => navigation.navigate('PlayerScreen')}>
       <Container style={styles.miniPlayer}>
         <Content>
           <View style={styles.trackDetails}>
