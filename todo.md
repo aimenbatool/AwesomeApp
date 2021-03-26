@@ -1,0 +1,1 @@
+- Action buttons on mini player

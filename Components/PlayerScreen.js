@@ -33,7 +33,7 @@ const PlayerScreen = () => {
             <CardItem>
               <TouchableOpacity onPress={navigation.goBack}>
                 <Right>
-                  <Icon name="chevron-down" />
+                  <Icon style={styles.navigation} name="chevron-down" />
                 </Right>
               </TouchableOpacity>
             </CardItem>
@@ -48,27 +48,30 @@ const PlayerScreen = () => {
               <ProgressSlider />
             </View>
             <View style={styles.actionButtonsContainer}>
-              <TouchableOpacity onPress={() => playerContext.seekTo(+10)}>
+              <TouchableOpacity onPress={() => playerContext.seekTo(-10)}>
                 <Icon
                   style={styles.actionButton}
-                  name="play-skip-forward-outline"
+                  name="md-play-forward-outline"
                 />
               </TouchableOpacity>
               {playerContext.isPaused ? (
                 <TouchableOpacity onPress={() => playerContext.play()}>
-                  <Icon style={styles.actionButton} name="play-outline" />
+                  <Icon
+                    style={styles.actionButton}
+                    name="play-circle-outline"
+                  />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity onPress={() => playerContext.pause()}>
-                  <Icon style={styles.actionButton} name="pause-outline" />
+                  <Icon
+                    style={styles.actionButton}
+                    name="pause-circle-outline"
+                  />
                 </TouchableOpacity>
               )}
 
-              <TouchableOpacity onPress={() => playerContext.seekTo(-10)}>
-                <Icon
-                  style={styles.actionButton}
-                  name="play-skip-back-outline"
-                />
+              <TouchableOpacity onPress={() => playerContext.seekTo(+10)}>
+                <Icon style={styles.actionButton} name="md-play-back-outline" />
               </TouchableOpacity>
             </View>
           </Container>
@@ -108,5 +111,8 @@ let styles = StyleSheet.create({
   actionButton: {
     padding: 10,
     fontSize: 35,
+  },
+  navigation: {
+    color: '#1E2022',
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Thumbnail, Container, Content, View, Icon, Button} from 'native-base';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import {useNavigation} from '@react-navigation/native';
@@ -33,29 +33,39 @@ const MiniPlayer = () => {
             </View>
 
             <View style={styles.buttonContainer}>
-              {playerContext.isPaused ? (
-                <Button transparent onPress={() => playerContext.play()}>
-                  <Icon style={styles.playButton} name="play" size={1} />
-                </Button>
-              ) : (
-                <Button transparent onPress={() => playerContext.pause()}>
-                  <Icon style={styles.playButton} name="pause" size={1} />
-                </Button>
-              )}
-
-              {playerContext.isStopped && (
-                <Button transparent onPress={() => null}>
-                  <Icon style={styles.playButton} name="square" size={1} />
-                </Button>
-              )}
-
-              <Button transparent onPress={() => playerContext.seekTo()}>
+              <TouchableOpacity onPress={() => playerContext.seekTo(-10)}>
                 <Icon
-                  style={styles.playButton}
-                  name="play-skip-back"
+                  style={styles.actionButton}
+                  name="md-play-forward-outline"
                   size={1}
                 />
-              </Button>
+              </TouchableOpacity>
+
+              {playerContext.isPaused ? (
+                <TouchableOpacity onPress={() => playerContext.play()}>
+                  <Icon
+                    style={styles.actionButton}
+                    name="play-circle-outline"
+                    size={1}
+                  />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity onPress={() => playerContext.pause()}>
+                  <Icon
+                    style={styles.actionButton}
+                    name="pause-circle-outline"
+                    size={1}
+                  />
+                </TouchableOpacity>
+              )}
+
+              <TouchableOpacity onPress={() => playerContext.seekTo(+10)}>
+                <Icon
+                  style={styles.actionButton}
+                  name="md-play-back-outline"
+                  size={1}
+                />
+              </TouchableOpacity>
             </View>
           </View>
         </Content>
@@ -68,9 +78,9 @@ let styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
   },
-  playButton: {
-    color: '#353755',
-    fontSize: 28,
+  actionButton: {
+    padding: 6,
+    fontSize: 25,
   },
   titleContainer: {
     flexDirection: 'column',
@@ -80,8 +90,6 @@ let styles = StyleSheet.create({
     marginLeft: 18,
   },
   trackTitle: {
-    // flex: 1,
-    // color: '#353755',
     fontSize: 20,
   },
   category: {

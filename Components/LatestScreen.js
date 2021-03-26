@@ -44,12 +44,6 @@ const LatestScreen = () => {
                       <nativeBase.Icon name="pause" />
                     </nativeBase.Button>
                   )}
-
-                  {/* {playerContext.isStopped && (
-                    <nativeBase.Button transparent onPress={() => null}>
-                      <nativeBase.Icon name="stop" />
-                    </nativeBase.Button>
-                  )} */}
                   <nativeBase.Button transparent>
                     <nativeBase.Icon name="download" />
                   </nativeBase.Button>
