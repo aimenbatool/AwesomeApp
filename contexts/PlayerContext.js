@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import RNTrackPlayer from 'react-native-track-player';
 import TrackPlayer, {
   STATE_PAUSED,
   STATE_PLAYING,
@@ -14,6 +15,7 @@ export const PlayerContext = React.createContext({
   play: () => null,
   pause: () => null,
   seekTo: () => null,
+  goTo: () => null,
 });
 
 export const PlayerContextProvider = (props) => {
@@ -59,6 +61,10 @@ export const PlayerContextProvider = (props) => {
     await TrackPlayer.seekTo(position + parseInt(amount, 10));
   };
 
+  const goTo = async (amount) => {
+    await RNTrackPlayer.seekTo(amount);
+  };
+
   const value = {
     isPlaying: playerState === STATE_PLAYING,
     isPaused: playerState === STATE_PAUSED,
@@ -68,6 +74,7 @@ export const PlayerContextProvider = (props) => {
     pause,
     play,
     seekTo,
+    goTo,
   };
   return (
     <PlayerContext.Provider value={value}>
