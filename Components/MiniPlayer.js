@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {Thumbnail, Container, Content, View, Icon, Button} from 'native-base';
+import {Thumbnail, Container, Content, View, Icon} from 'native-base';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import {useNavigation} from '@react-navigation/native';
 
@@ -15,7 +15,7 @@ const MiniPlayer = () => {
   const uri = 'https://facebook.github.io/react-native/docs/assets/favicon.png';
 
   return (
-    <Button onPress={() => navigation.navigate('PlayerScreen')}>
+    <TouchableOpacity onPress={() => navigation.navigate('PlayerScreen')}>
       <Container style={styles.miniPlayer}>
         <Content>
           <View style={styles.trackDetails}>
@@ -70,7 +70,7 @@ const MiniPlayer = () => {
           </View>
         </Content>
       </Container>
-    </Button>
+    </TouchableOpacity>
   );
 };
 
@@ -107,10 +107,7 @@ let styles = StyleSheet.create({
     width: '100%',
     height: 80,
     backgroundColor: '#F5FAFA',
-    position: 'absolute', //Here is the trick
-    bottom: 0, //Here is the trick
-    padding: 4,
-
+    // padding: 6,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -118,8 +115,6 @@ let styles = StyleSheet.create({
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-
-    elevation: 3,
   },
 });
 export default MiniPlayer;

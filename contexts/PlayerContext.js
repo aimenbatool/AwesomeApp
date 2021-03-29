@@ -46,7 +46,7 @@ export const PlayerContextProvider = (props) => {
       await TrackPlayer.reset();
     }
 
-    console.log(JSON.stringify(track));
+    // console.log(JSON.stringify(track));
     await TrackPlayer.add([track]);
     setCurrentTrack(track);
     await TrackPlayer.play();
