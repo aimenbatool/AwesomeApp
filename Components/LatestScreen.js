@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet, Platform} from 'react-native';
 import * as nativeBase from 'native-base';
 import {View} from 'react-native';
 import tracksData from '../utils/trackData';
@@ -14,7 +15,10 @@ const LatestScreen = () => {
           {tracksData.map((track) => (
             <nativeBase.ListItem key={track.id}>
               <nativeBase.Left>
-                <nativeBase.Text> {track.title} </nativeBase.Text>
+                <nativeBase.Text style={styles.trackTitle}>
+                  {' '}
+                  {track.title}{' '}
+                </nativeBase.Text>
               </nativeBase.Left>
               <nativeBase.Right>
                 <View style={{flexDirection: 'row'}}>
@@ -58,3 +62,10 @@ const LatestScreen = () => {
 };
 
 export default LatestScreen;
+
+const styles = StyleSheet.create({
+  trackTitle: {
+    fontFamily:
+      Platform.OS === 'android' ? 'JameelNooriRegular' : 'NotoNastaliqUrdu',
+  },
+});

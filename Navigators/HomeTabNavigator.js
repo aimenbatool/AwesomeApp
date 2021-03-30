@@ -7,7 +7,7 @@ import LatestStackNavigator from './LatestStackNavigator';
 import CollectionStackNavigator from './CollectionStackNavigator';
 import MiniPlayer from '../Components/MiniPlayer';
 import {View} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +28,10 @@ function HomeTabNavigator() {
         },
         labelStyle: {
           fontSize: 18,
+          fontFamily:
+            Platform.OS === 'android'
+              ? 'JameelNooriRegular'
+              : 'NotoNastaliqUrdu',
         },
         tabStyle: {
           justifyContent: 'center',

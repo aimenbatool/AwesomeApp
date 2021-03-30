@@ -27,6 +27,8 @@
 		9AAC042F2579A3450050D8DF /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39783C651D28440E88056E0C /* RNPlaceholder.swift */; };
 		C4FABECFEEC073634B4D5A87 /* libPods-AwesomeProject-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1ECDC2DD8EF72FB5B3E5CA8 /* libPods-AwesomeProject-tvOSTests.a */; };
 		FA49A5AD18FE3F11B91A38EB /* libPods-AwesomeProject-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B312DA55023230982A505B /* libPods-AwesomeProject-tvOS.a */; };
+		1C4DE4DEE2E0475B8BCE303A /* JameelNooriRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4AC8CA7EF72F4338A6B4C63E /* JameelNooriRegular.ttf */; };
+		3E0FDCF9A4904908AACACBBA /* NotoNastaliqUrdu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCF3BBB237DF4CB6A6062F17 /* NotoNastaliqUrdu-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F506BB597B774762B667CFC5 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		4AC8CA7EF72F4338A6B4C63E /* JameelNooriRegular.ttf */ = {isa = PBXFileReference; name = "JameelNooriRegular.ttf"; path = "../assets/fonts/JameelNooriRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DCF3BBB237DF4CB6A6062F17 /* NotoNastaliqUrdu-Regular.ttf */ = {isa = PBXFileReference; name = "NotoNastaliqUrdu-Regular.ttf"; path = "../assets/fonts/NotoNastaliqUrdu-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,8 @@
 				55E896E56FC24881BDD60669 /* rubicon-icon-font.ttf */,
 				D85CFD640DFE4D84AF0C42E1 /* SimpleLineIcons.ttf */,
 				2A54132E17584D41A1DC77EA /* Zocial.ttf */,
+				4AC8CA7EF72F4338A6B4C63E /* JameelNooriRegular.ttf */,
+				DCF3BBB237DF4CB6A6062F17 /* NotoNastaliqUrdu-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -407,6 +413,8 @@
 				583DE422D90743DCAAD86D24 /* Roboto_medium.ttf in Resources */,
 				61D32053F5D4413999A3D7A2 /* Roboto.ttf in Resources */,
 				3C9FE6DFF6A14204862A0587 /* rubicon-icon-font.ttf in Resources */,
+				1C4DE4DEE2E0475B8BCE303A /* JameelNooriRegular.ttf in Resources */,
+				3E0FDCF9A4904908AACACBBA /* NotoNastaliqUrdu-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
