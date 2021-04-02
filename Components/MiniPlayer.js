@@ -28,7 +28,7 @@ const MiniPlayer = () => {
                 {playerContext.currentTrack.title}
               </Text>
               <Text numberOfLines={1} style={styles.category}>
-                شرحِ زیارتِ جامعہ کبیرہ
+                {playerContext.currentTrack.album}
               </Text>
             </View>
 

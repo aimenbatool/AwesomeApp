@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Left,
   List,
@@ -9,43 +9,65 @@ import {
   Container,
   Content,
 } from 'native-base';
+import Globals from '../utils/Globals';
 
-function CategoryScreen({navigation}) {
+const CategoryScreen = ({navigation}) => {
+  const [categories, setCategories] = useState();
+  const {API_URL} = Globals;
+
+  const getCategories = async () => {
+    try {
+      let response = await fetch(`${API_URL}categories`);
+      let json = await response.json();
+      return json;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategories()
+      .then((res) => {
+        setCategories(res);
+      })
+      .catch((err) => console.log(err));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Container>
       <Content>
         <List>
-          <ListItem
-            onPress={() =>
-              navigation.navigate('SubCategory', {name: 'شرحِ زیارات'})
-            }>
-            <Left>
-              <Text> شرحِ زیارات </Text>
-            </Left>
-            <Body>
-              <Icon name="chevron-back-outline" />
-            </Body>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text> شرحِ نہج البلاغہ </Text>
-            </Left>
-            <Body>
-              <Icon name="chevron-back-outline" />
-            </Body>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text> تفسیرِ قرآن </Text>
-            </Left>
-            <Body>
-              <Icon name="chevron-back-outline" />
-            </Body>
-          </ListItem>
+          {categories &&
+            categories.map((category) => {
+              const {subCategories} = category;
+              let navigationRoute =
+                subCategories.length > 0 ? 'SubCategory' : 'Playlist';
+              if (category.parentId === 'none') {
+                return (
+                  <ListItem
+                    key={category._id}
+                    onPress={() =>
+                      navigation.navigate(navigationRoute, {
+                        name: category.nameUr,
+                        category: category,
+                      })
+                    }>
+                    <Left>
+                      <Text> {category.nameUr} </Text>
+                    </Left>
+                    <Body>
+                      <Icon name="chevron-back-outline" />
+                    </Body>
+                  </ListItem>
+                );
+              }
+            })}
         </List>
       </Content>
     </Container>
   );
-}
+};
 
 export default CategoryScreen;

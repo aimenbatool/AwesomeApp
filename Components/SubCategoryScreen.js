@@ -1,52 +1,71 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Left,
   List,
   ListItem,
   Text,
   Body,
+  Icon,
   Container,
   Content,
 } from 'native-base';
+import Globals from '../utils/Globals';
 
-function SubCategoryScreen({navigation}) {
+const SubCategoryScreen = ({route, navigation}) => {
+  const {category} = route.params;
+  const {subCategories} = category;
+  const [categories, setCategories] = useState([]);
+  const {API_URL} = Globals;
+
+  const getCategories = async () => {
+    try {
+      let response = await fetch(`${API_URL}categories`);
+      let json = await response.json();
+      return json;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategories()
+      .then((res) => {
+        setCategories(res);
+      })
+      .catch((err) => console.log(err));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Container>
       <Content>
         <List>
-          <ListItem
-            onPress={() =>
-              navigation.navigate('Playlist', {
-                name: 'زیارتِ جامعہ کبیرہ',
-              })
-            }>
-            <Left>
-              <Text> زیارتِ جامعہ کبیرہ </Text>
-            </Left>
-            <Body>
-              <Text> (9) </Text>
-            </Body>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text> زیارتِ آلِ یاسین </Text>
-            </Left>
-            <Body>
-              <Text> (8) </Text>
-            </Body>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text> زیارتِ عاشورہ </Text>
-            </Left>
-            <Body>
-              <Text> (2) </Text>
-            </Body>
-          </ListItem>
+          {subCategories &&
+            subCategories.map((subCategory) => {
+              let data = categories.find((cat) => cat._id === subCategory);
+              return (
+                <ListItem
+                  key={subCategory}
+                  onPress={() =>
+                    navigation.navigate('Playlist', {
+                      name: data && data.nameUr,
+                      category: data,
+                    })
+                  }>
+                  <Left>
+                    <Text> {data && data.nameUr} </Text>
+                  </Left>
+                  <Body>
+                    <Icon name="chevron-back-outline" />
+                  </Body>
+                </ListItem>
+              );
+            })}
         </List>
       </Content>
     </Container>
   );
-}
+};
 
 export default SubCategoryScreen;

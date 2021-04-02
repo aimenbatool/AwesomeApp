@@ -1,8 +1,9 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import CategoryScreen from '../Components/CategoryScreen';
-import SubCategoryScreen from '../Components/SubCategoryScreen';
 import PlaylistScreen from '../Components/PlaylistScreen';
+import AudioScreen from '../Components/AudioScreen';
+import SubCategoryScreen from '../Components/SubCategoryScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,11 +18,16 @@ const CollectionStackNavigator = () => {
       <Stack.Screen
         name="SubCategory"
         component={SubCategoryScreen}
-        options={({route}) => ({title: route.params.name})}
+        options={{title: 'مجموعہ '}}
       />
       <Stack.Screen
         name="Playlist"
         component={PlaylistScreen}
+        options={({route}) => ({title: route.params.name})}
+      />
+      <Stack.Screen
+        name="Audio"
+        component={AudioScreen}
         options={({route}) => ({title: route.params.name})}
       />
     </Stack.Navigator>

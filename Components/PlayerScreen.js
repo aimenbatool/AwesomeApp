@@ -42,7 +42,9 @@ const PlayerScreen = () => {
             </CardItem>
           </Card>
           <Container style={styles.trackDetails}>
-            <Text style={styles.trackTitle}>{track.title}</Text>
+            <Text style={styles.trackTitle}>
+              {track.album} - {track.title}
+            </Text>
             <Text style={styles.artistName}> {track.artist} </Text>
             <View>
               <ProgressSlider />
