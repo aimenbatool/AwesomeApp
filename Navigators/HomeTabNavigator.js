@@ -27,6 +27,7 @@ function HomeTabNavigator() {
           bottom: 0,
         },
         labelStyle: {
+          textAlign: 'center',
           fontSize: 18,
           fontFamily:
             Platform.OS === 'android'

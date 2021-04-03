@@ -44,11 +44,17 @@ const SubCategoryScreen = ({route, navigation}) => {
           {subCategories &&
             subCategories.map((subCategory) => {
               let data = categories.find((cat) => cat._id === subCategory);
+
+              let navigtionRoute =
+                data && data.subCategories.length > 0
+                  ? 'SubCategory'
+                  : 'Playlist';
+
               return (
                 <ListItem
                   key={subCategory}
                   onPress={() =>
-                    navigation.navigate('Playlist', {
+                    navigation.navigate(navigtionRoute, {
                       name: data && data.nameUr,
                       category: data,
                     })

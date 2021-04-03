@@ -13,22 +13,28 @@ const CollectionStackNavigator = () => {
       <Stack.Screen
         name="Category"
         component={CategoryScreen}
-        options={{title: 'مجموعہ'}}
+        options={{title: 'مجموعہ', headerTitleAlign: 'center'}}
       />
       <Stack.Screen
         name="SubCategory"
         component={SubCategoryScreen}
-        options={{title: 'مجموعہ '}}
+        options={{title: 'مجموعہ ', headerTitleAlign: 'center'}}
       />
       <Stack.Screen
         name="Playlist"
         component={PlaylistScreen}
-        options={({route}) => ({title: route.params.name})}
+        options={({route}) => ({
+          title: route.params.name,
+          headerTitleAlign: 'center',
+        })}
       />
       <Stack.Screen
         name="Audio"
         component={AudioScreen}
-        options={({route}) => ({title: route.params.name})}
+        options={({route}) => ({
+          title: route.params.name,
+          headerTitleAlign: 'center',
+        })}
       />
     </Stack.Navigator>
   );

@@ -14,3 +14,4 @@ no playlist in parent category, playlist in child only case handle
 ipconfig getifaddr en0
 
 
+work on download feature

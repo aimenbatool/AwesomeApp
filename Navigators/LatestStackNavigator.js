@@ -10,7 +10,7 @@ const LatestStackNavigator = () => {
       <Stack.Screen
         name="Category"
         component={LatestScreen}
-        options={{title: 'غدیری'}}
+        options={{title: 'غدیری', headerTitleAlign: 'center'}}
       />
     </Stack.Navigator>
   );
