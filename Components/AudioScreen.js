@@ -10,8 +10,10 @@ import {
   Icon,
   Container,
   Content,
+  Body,
+  Thumbnail,
 } from 'native-base';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import Globals from '../utils/Globals';
 const {API_URL} = Globals;
@@ -61,10 +63,16 @@ const AudioScreen = ({route}) => {
               let artwork = `${API_URL}${artResource}`;
 
               return (
-                <ListItem key={audio._id}>
+                <ListItem thumbnail key={audio._id}>
                   <Left>
-                    <Text> {audio.titleUr} </Text>
+                    <Thumbnail square source={{uri: artwork}} />
                   </Left>
+                  <Body>
+                    <Text style={styles.TrackDetails}> {audio.titleUr} </Text>
+                    <Text note numberOfLines={1} style={styles.TrackDetails}>
+                      {playlist.nameUr}
+                    </Text>
+                  </Body>
                   <Right>
                     <View style={{flexDirection: 'row'}}>
                       {playerContext.isPaused ||
@@ -109,3 +117,9 @@ const AudioScreen = ({route}) => {
 };
 
 export default AudioScreen;
+
+let styles = StyleSheet.create({
+  TrackDetails: {
+    textAlign: 'left',
+  },
+});
