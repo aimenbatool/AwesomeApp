@@ -45,7 +45,7 @@ const PlayerScreen = () => {
             <Text style={styles.trackTitle}>
               {track.album} - {track.title}
             </Text>
-            <Text style={styles.artistName}> {track.artist} </Text>
+            <Text style={styles.artistName}> افتخار احمد غدیری </Text>
             <View>
               <ProgressSlider />
             </View>

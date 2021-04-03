@@ -12,9 +12,10 @@ import {
   Thumbnail,
   Text,
 } from 'native-base';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import Globals from '../utils/Globals';
+// import playerIcon from '../assets/images/iconfinder__Soundcloud_798218.png';
 const {API_URL} = Globals;
 
 const LatestScreen = () => {
@@ -22,6 +23,8 @@ const LatestScreen = () => {
   const [latestAudios, setLatestsAudio] = useState();
   const [message, setMessage] = useState();
   const [playlists, setPlaylists] = useState();
+
+  // const playerIconUri = Image.resolveAssetSource(playerIcon).uri;
 
   const getLatestAudios = async () => {
     try {
@@ -82,12 +85,16 @@ const LatestScreen = () => {
                 playlists.find((playlist) => playlist._id === audio.playlistId);
 
               return (
-                <ListItem key={audio._id}>
+                <ListItem thumbnail key={audio._id}>
                   <Left>
-                    <Text>{data && data.nameUr} </Text>
-
-                    <Text>{audio.titleUr}</Text>
+                    <Thumbnail square source={{uri: artwork}} />
                   </Left>
+                  <Body>
+                    <Text style={styles.TrackDetails}> {audio.titleUr} </Text>
+                    <Text style={styles.TrackDetails} note numberOfLines={1}>
+                      {data && data.nameUr}
+                    </Text>
+                  </Body>
                   <Right>
                     <View style={{flexDirection: 'row'}}>
                       {playerContext.isPaused ||
@@ -132,3 +139,10 @@ const LatestScreen = () => {
 };
 
 export default LatestScreen;
+
+let styles = StyleSheet.create({
+  TrackDetails: {
+    textAlign: 'left',
+    marginLeft: 5,
+  },
+});
