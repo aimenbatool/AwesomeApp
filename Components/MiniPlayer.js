@@ -12,15 +12,17 @@ const MiniPlayer = () => {
     return null;
   }
 
-  const uri = 'https://facebook.github.io/react-native/docs/assets/favicon.png';
-
   return (
     <TouchableOpacity onPress={() => navigation.navigate('PlayerScreen')}>
       <Container style={styles.miniPlayer}>
         <Content>
           <View style={styles.trackDetails}>
             <View>
-              <Thumbnail style={styles.thumbnail} square source={{uri: uri}} />
+              <Thumbnail
+                style={styles.thumbnail}
+                square
+                source={{uri: playerContext.currentTrack.artwork}}
+              />
             </View>
 
             <View style={styles.titleContainer}>
@@ -98,14 +100,14 @@ let styles = StyleSheet.create({
   trackDetails: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
   },
   thumbnail: {
     borderRadius: 6,
   },
   miniPlayer: {
     width: '100%',
-    height: 80,
+    height: '40%',
     backgroundColor: '#F5FAFA',
     // padding: 6,
     shadowColor: '#000',
