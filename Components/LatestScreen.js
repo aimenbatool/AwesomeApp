@@ -12,11 +12,12 @@ import {
   Thumbnail,
   Text,
 } from 'native-base';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, PermissionsAndroid, Platform} from 'react-native';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import Globals from '../utils/Globals';
 // import playerIcon from '../assets/images/iconfinder__Soundcloud_798218.png';
 const {API_URL} = Globals;
+import RNFetchBlob from 'rn-fetch-blob';
 
 const LatestScreen = () => {
   const playerContext = usePlayerContext();
@@ -46,6 +47,72 @@ const LatestScreen = () => {
     }
   };
 
+  const getExtention = (filename) => {
+    // To get the file extension
+    return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;
+  };
+
+  const downloadAudio = (title, audioURL) => {
+    const {config, fs} = RNFetchBlob;
+
+    const isIOS = Platform.OS === 'ios';
+    const aPath = Platform.select({
+      ios: fs.dirs.DocumentDir,
+      android: fs.dirs.DownloadDir,
+    });
+
+    // get extension
+    let ext = getExtention(audioURL);
+    let fileExt = '.' + ext[0];
+    let path = aPath + '/' + title + fileExt;
+    const configOptions = Platform.select({
+      ios: {
+        fileCache: true,
+        path: path,
+        appendExt: fileExt,
+      },
+
+      android: {
+        fileCache: false,
+        appendExt: fileExt,
+        addAndroidDownloads: {
+          useDownloadManager: true,
+          title: 'Successfully downloaded. ',
+          notification: true,
+          path: path,
+          description: 'An audio file.',
+        },
+      },
+    });
+
+    if (isIOS) {
+      // loading true
+      config(configOptions)
+        .fetch('GET', audioURL)
+        .then((res) => {
+          console.log('file', res);
+          alert('Audio Downloaded.');
+          // loading false
+          // RNFetchBlob.ios.previewDocument(`file://${res.path()}`);
+        });
+      return;
+    } else {
+      // set state loading
+      config(configOptions)
+        .fetch('GET', audioURL)
+        .progress((received, total) => {
+          console.log('progress', received / total);
+        })
+        .then((res) => {
+          console.log('fileDownlod', res);
+          // RNFetchBlob.android.actionViewIntent(res.path());
+        })
+        .catch((errorMessage, statusCode) => {
+          console.log('Error', errorMessage);
+        });
+    }
+  };
+
   useEffect(() => {
     getPlaylists()
       .then((res) => {
@@ -64,6 +131,8 @@ const LatestScreen = () => {
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // download audio code
 
   return (
     <Container>
@@ -84,6 +153,7 @@ const LatestScreen = () => {
                 playlists &&
                 playlists.find((playlist) => playlist._id === audio.playlistId);
 
+              let audioName = `${data && data.nameEng} - ${audio.titleEng}`;
               return (
                 <ListItem thumbnail key={audio._id}>
                   <Left>
@@ -124,7 +194,9 @@ const LatestScreen = () => {
                           <Icon name="pause" />
                         </Button>
                       )}
-                      <Button transparent>
+                      <Button
+                        transparent
+                        onPress={() => downloadAudio(audioName, audioUrl)}>
                         <Icon name="download" />
                       </Button>
                     </View>

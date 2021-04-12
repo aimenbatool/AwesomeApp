@@ -15,3 +15,7 @@ ipconfig getifaddr en0
 
 
 work on download feature
+
+---
+---
+- permission on androidd level api 23 
