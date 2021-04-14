@@ -139,81 +139,79 @@ const LatestScreen = () => {
   return (
     <Container>
       <Content>
-        {message ? (
+        {message && (
           <View style={styles.messageView}>
             <Text>{message}</Text>
           </View>
-        ) : (
-          <List>
-            {latestAudios &&
-              latestAudios.map((audio) => {
-                let resourceLink = `${audio.audio}`;
-                resourceLink = resourceLink.substring(9);
-                let audioUrl = `${API_URL}${resourceLink}`;
+        )}
+        <List>
+          {latestAudios &&
+            latestAudios.map((audio) => {
+              let resourceLink = `${audio.audio}`;
+              resourceLink = resourceLink.substring(9);
+              let audioUrl = `${API_URL}${resourceLink}`;
+              let encodedUrl = encodeURI(audioUrl);
 
-                let artResource = `${audio.artwork}`;
-                artResource = artResource.substring(9);
-                let artwork = `${API_URL}${artResource}`;
+              let artResource = `${audio.artwork}`;
+              artResource = artResource.substring(9);
+              let artwork = `${API_URL}${artResource}`;
 
-                let data =
-                  playlists &&
-                  playlists.find(
-                    (playlist) => playlist._id === audio.playlistId,
-                  );
+              let data =
+                playlists &&
+                playlists.find((playlist) => playlist._id === audio.playlistId);
 
-                let audioName = `${data && data.nameEng} - ${audio.titleEng}`;
-                return (
-                  <ListItem thumbnail key={audio._id}>
-                    <Left>
-                      <Thumbnail square source={{uri: artwork}} />
-                    </Left>
-                    <Body>
-                      <Text style={styles.TrackDetails}> {audio.titleUr} </Text>
-                      <Text style={styles.TrackDetails} note numberOfLines={1}>
-                        {data && data.nameUr}
-                      </Text>
-                    </Body>
-                    <Right>
-                      <View style={{flexDirection: 'row'}}>
-                        {playerContext.isPaused ||
-                        playerContext.isEmpty ||
-                        (playerContext.currentTrack &&
-                          playerContext.currentTrack.id !== audio._id) ? (
-                          <Button
-                            transparent
-                            onPress={() => {
-                              playerContext.play({
-                                id: audio._id,
-                                title: audio.titleUr,
-                                artwork: artwork,
-                                artist: audio.artist,
-                                url: audioUrl,
-                                album: data.nameUr,
-                              });
-                            }}>
-                            <Icon name="play" />
-                          </Button>
-                        ) : (
-                          <Button
-                            transparent
-                            onPress={() => {
-                              playerContext.pause();
-                            }}>
-                            <Icon name="pause" />
-                          </Button>
-                        )}
+              let audioName = `${data && data.nameEng} - ${audio.titleEng}`;
+              return (
+                <ListItem thumbnail key={audio._id}>
+                  <Left>
+                    <Thumbnail square source={{uri: artwork}} />
+                  </Left>
+                  <Body>
+                    <Text style={styles.TrackDetails}> {audio.titleUr} </Text>
+                    <Text style={styles.TrackDetails} note numberOfLines={1}>
+                      {data && data.nameUr}
+                    </Text>
+                  </Body>
+                  <Right>
+                    <View style={{flexDirection: 'row'}}>
+                      {playerContext.isPaused ||
+                      playerContext.isEmpty ||
+                      (playerContext.currentTrack &&
+                        playerContext.currentTrack.id !== audio._id) ? (
                         <Button
                           transparent
-                          onPress={() => downloadAudio(audioName, audioUrl)}>
-                          <Icon name="download" />
+                          onPress={() => {
+                            playerContext.play({
+                              id: audio._id,
+                              title: audio.titleUr,
+                              artwork: artwork,
+                              artist: audio.artist,
+                              url: encodedUrl,
+                              album: data.nameUr,
+                            });
+                          }}>
+                          <Icon name="play" />
                         </Button>
-                      </View>
-                    </Right>
-                  </ListItem>
-                );
-              })}
-          </List>
-        )}
+                      ) : (
+                        <Button
+                          transparent
+                          onPress={() => {
+                            playerContext.pause();
+                          }}>
+                          <Icon name="pause" />
+                        </Button>
+                      )}
+                      <Button
+                        transparent
+                        onPress={() => downloadAudio(audioName, encodedUrl)}>
+                        <Icon name="download" />
+                      </Button>
+                    </View>
+                  </Right>
+                </ListItem>
+              );
+            })}
+        </List>
       </Content>
     </Container>
   );

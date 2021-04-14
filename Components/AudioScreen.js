@@ -126,6 +126,7 @@ const AudioScreen = ({route}) => {
               let resourceLink = `${audio.audio}`;
               resourceLink = resourceLink.substring(9);
               let audioUrl = `${API_URL}${resourceLink}`;
+              let encodedUrl = encodeURI(audioUrl);
 
               let artResource = `${audio.artwork}`;
               artResource = artResource.substring(9);
@@ -160,7 +161,7 @@ const AudioScreen = ({route}) => {
                               title: audio.titleUr,
                               artwork: artwork,
                               artist: audio.artist,
-                              url: audioUrl,
+                              url: encodedUrl,
                               album: playlist.nameUr,
                             });
                           }}>
@@ -176,7 +177,7 @@ const AudioScreen = ({route}) => {
                         </Button>
                       )}
                       <Button
-                        onPress={() => downloadAudio(audioName, audioUrl)}
+                        onPress={() => downloadAudio(audioName, encodedUrl)}
                         transparent>
                         <Icon name="download" />
                       </Button>
