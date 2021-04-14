@@ -8,11 +8,14 @@ import {
   Icon,
   Container,
   Content,
+  View,
 } from 'native-base';
 import Globals from '../utils/Globals';
+import {StyleSheet} from 'react-native';
 
 const CategoryScreen = ({navigation}) => {
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState([]);
+  const [message, setMessage] = useState();
   const {API_URL} = Globals;
 
   const getCategories = async () => {
@@ -28,7 +31,9 @@ const CategoryScreen = ({navigation}) => {
   useEffect(() => {
     getCategories()
       .then((res) => {
-        setCategories(res);
+        res.message ? setMessage(res.message) : setCategories(res);
+        // console.log(res, 'response');
+        // setCategories(res);
       })
       .catch((err) => console.log(err));
 
@@ -38,36 +43,49 @@ const CategoryScreen = ({navigation}) => {
   return (
     <Container>
       <Content>
-        <List>
-          {categories &&
-            categories.map((category) => {
-              const {subCategories} = category;
-              let navigationRoute =
-                subCategories.length > 0 ? 'SubCategory' : 'Playlist';
-              if (category.parentId === 'none') {
-                return (
-                  <ListItem
-                    key={category._id}
-                    onPress={() =>
-                      navigation.navigate(navigationRoute, {
-                        name: category.nameUr,
-                        category: category,
-                      })
-                    }>
-                    <Left>
-                      <Text> {category.nameUr} </Text>
-                    </Left>
-                    <Body>
-                      <Icon name="chevron-back-outline" />
-                    </Body>
-                  </ListItem>
-                );
-              }
-            })}
-        </List>
+        {message ? (
+          <View style={styles.messageView}>
+            <Text> {message} </Text>
+          </View>
+        ) : (
+          <List>
+            {categories &&
+              categories.map((category) => {
+                const {subCategories} = category;
+                let navigationRoute =
+                  subCategories.length > 0 ? 'SubCategory' : 'Playlist';
+                if (category.parentId === 'none') {
+                  return (
+                    <ListItem
+                      key={category._id}
+                      onPress={() =>
+                        navigation.navigate(navigationRoute, {
+                          name: category.nameUr,
+                          category: category,
+                        })
+                      }>
+                      <Left>
+                        <Text> {category.nameUr} </Text>
+                      </Left>
+                      <Body>
+                        <Icon name="chevron-back-outline" />
+                      </Body>
+                    </ListItem>
+                  );
+                }
+              })}
+          </List>
+        )}
       </Content>
     </Container>
   );
 };
 
 export default CategoryScreen;
+
+let styles = StyleSheet.create({
+  messageView: {
+    alignItems: 'center',
+    marginTop: 30,
+  },
+});

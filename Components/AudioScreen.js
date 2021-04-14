@@ -13,9 +13,11 @@ import {
   Body,
   Thumbnail,
 } from 'native-base';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Platform} from 'react-native';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import Globals from '../utils/Globals';
+import RNFetchBlob from 'rn-fetch-blob';
+
 const {API_URL} = Globals;
 
 const AudioScreen = ({route}) => {
@@ -31,6 +33,73 @@ const AudioScreen = ({route}) => {
       return json;
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  // download audio
+
+  const getExtention = (filename) => {
+    // To get the file extension
+    return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;
+  };
+
+  const downloadAudio = (title, audioURL) => {
+    const {config, fs} = RNFetchBlob;
+
+    const isIOS = Platform.OS === 'ios';
+    const aPath = Platform.select({
+      ios: fs.dirs.DocumentDir,
+      android: fs.dirs.DownloadDir,
+    });
+
+    // get extension
+    let ext = getExtention(audioURL);
+    let fileExt = '.' + ext[0];
+    let path = aPath + '/' + title + fileExt;
+    const configOptions = Platform.select({
+      ios: {
+        fileCache: true,
+        path: path,
+        appendExt: fileExt,
+      },
+
+      android: {
+        fileCache: false,
+        appendExt: fileExt,
+        addAndroidDownloads: {
+          useDownloadManager: true,
+          notification: true,
+          path: path,
+          description: 'Audios.',
+        },
+      },
+    });
+
+    if (isIOS) {
+      // loading true
+      config(configOptions)
+        .fetch('GET', audioURL)
+        .then((res) => {
+          console.log('file', res);
+          alert('Audio Downloaded.');
+          // loading false
+          // RNFetchBlob.ios.previewDocument(`file://${res.path()}`);
+        });
+      return;
+    } else {
+      // set state loading
+      config(configOptions)
+        .fetch('GET', audioURL)
+        .progress((received, total) => {
+          console.log('progress', received / total);
+        })
+        .then((res) => {
+          console.log('fileDownlod', res);
+          // RNFetchBlob.android.actionViewIntent(res.path());
+        })
+        .catch((errorMessage, statusCode) => {
+          console.log('Error', errorMessage);
+        });
     }
   };
 
@@ -61,6 +130,10 @@ const AudioScreen = ({route}) => {
               let artResource = `${audio.artwork}`;
               artResource = artResource.substring(9);
               let artwork = `${API_URL}${artResource}`;
+
+              let audioName = `${playlist && playlist.nameEng} - ${
+                audio.titleEng
+              }`;
 
               return (
                 <ListItem thumbnail key={audio._id}>
@@ -102,7 +175,9 @@ const AudioScreen = ({route}) => {
                           <Icon name="pause" />
                         </Button>
                       )}
-                      <Button transparent>
+                      <Button
+                        onPress={() => downloadAudio(audioName, audioUrl)}
+                        transparent>
                         <Icon name="download" />
                       </Button>
                     </View>
