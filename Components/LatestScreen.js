@@ -24,7 +24,7 @@ const LatestScreen = () => {
   const [latestAudios, setLatestsAudio] = useState();
   const [message, setMessage] = useState();
   const [playlists, setPlaylists] = useState();
-
+  const [setDownloadProgress] = useState();
   // const playerIconUri = Image.resolveAssetSource(playerIcon).uri;
 
   const getLatestAudios = async () => {
@@ -88,24 +88,25 @@ const LatestScreen = () => {
       // loading true
       config(configOptions)
         .fetch('GET', audioURL)
+        .progress({interval: 0.3}, (received, total) => {
+          console.log('progress', received / total);
+          setDownloadProgress((received / total) * 100);
+        })
         .then((res) => {
           console.log('file', res);
           alert('Audio downloaded.');
           // loading false
-          // RNFetchBlob.ios.previewDocument(`file://${res.path()}`);
         });
       return;
     } else {
-      console.log('HEre one');
-
       // set state loading
       config(configOptions)
         .fetch('GET', audioURL)
-        .progress((received, total) => {
+        .progress({interval: 0.3}, (received, total) => {
           console.log('progress', received / total);
+          setDownloadProgress((received / total) * 100);
         })
         .then((res) => {
-          console.log('HEre');
           console.log('fileDownlod', res);
           // RNFetchBlob.android.actionViewIntent(res.path());
         })
