@@ -15,6 +15,7 @@ target 'AwesomeProject' do
     # Pods for testing
 
   # pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   end
 
