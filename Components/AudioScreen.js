@@ -38,7 +38,7 @@ const AudioScreen = ({route}) => {
 
   // download audio
 
-  const getExtention = (filename) => {
+  const getExtention = filename => {
     // To get the file extension
     return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;
   };
@@ -79,7 +79,7 @@ const AudioScreen = ({route}) => {
       // loading true
       config(configOptions)
         .fetch('GET', audioURL)
-        .then((res) => {
+        .then(res => {
           console.log('file', res);
           alert('Audio Downloaded.');
           // loading false
@@ -93,7 +93,7 @@ const AudioScreen = ({route}) => {
         .progress((received, total) => {
           console.log('progress', received / total);
         })
-        .then((res) => {
+        .then(res => {
           console.log('fileDownlod', res);
           // RNFetchBlob.android.actionViewIntent(res.path());
         })
@@ -105,24 +105,26 @@ const AudioScreen = ({route}) => {
 
   useEffect(() => {
     getAudios()
-      .then((res) => {
+      .then(res => {
         if (res.message) {
           setMessage(res.message);
         } else {
           setAudios(res);
         }
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Container>
       <Content>
-        <Text>{message}</Text>
+        <View style={styles.messageView}>
+          <Text> {message} </Text>
+        </View>
         <List>
           {audios &&
-            audios.map((audio) => {
+            audios.map(audio => {
               let resourceLink = `${audio.audio}`;
               resourceLink = resourceLink.substring(9);
               let audioUrl = `${API_URL}${resourceLink}`;
@@ -197,5 +199,14 @@ export default AudioScreen;
 let styles = StyleSheet.create({
   TrackDetails: {
     textAlign: 'left',
+  },
+  messageView: {
+    alignItems: 'center',
+    marginTop: 30,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  message: {
+    textAlign: 'center',
   },
 });

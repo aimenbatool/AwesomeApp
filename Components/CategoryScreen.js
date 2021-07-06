@@ -30,12 +30,12 @@ const CategoryScreen = ({navigation}) => {
 
   useEffect(() => {
     getCategories()
-      .then((res) => {
+      .then(res => {
         res.message ? setMessage(res.message) : setCategories(res);
         // console.log(res, 'response');
         // setCategories(res);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -46,11 +46,12 @@ const CategoryScreen = ({navigation}) => {
         {message ? (
           <View style={styles.messageView}>
             <Text> {message} </Text>
+            <Text> Hello </Text>
           </View>
         ) : (
           <List>
             {categories &&
-              categories.map((category) => {
+              categories.map(category => {
                 const {subCategories} = category;
                 let navigationRoute =
                   subCategories.length > 0 ? 'SubCategory' : 'Playlist';
@@ -87,5 +88,10 @@ let styles = StyleSheet.create({
   messageView: {
     alignItems: 'center',
     marginTop: 30,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  message: {
+    textAlign: 'center',
   },
 });

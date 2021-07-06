@@ -12,7 +12,7 @@ import {
   Thumbnail,
   Text,
 } from 'native-base';
-import {View, StyleSheet, PermissionsAndroid, Platform} from 'react-native';
+import {View, StyleSheet, Platform} from 'react-native';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import Globals from '../utils/Globals';
 // import playerIcon from '../assets/images/iconfinder__Soundcloud_798218.png';
@@ -24,7 +24,7 @@ const LatestScreen = () => {
   const [latestAudios, setLatestsAudio] = useState();
   const [message, setMessage] = useState();
   const [playlists, setPlaylists] = useState();
-  const [setDownloadProgress] = useState();
+  const [downloadProgress, setDownloadProgress] = useState();
   // const playerIconUri = Image.resolveAssetSource(playerIcon).uri;
 
   const getLatestAudios = async () => {
@@ -47,7 +47,7 @@ const LatestScreen = () => {
     }
   };
 
-  const getExtention = (filename) => {
+  const getExtention = filename => {
     // To get the file extension
     return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;
   };
@@ -92,7 +92,7 @@ const LatestScreen = () => {
           console.log('progress', received / total);
           setDownloadProgress((received / total) * 100);
         })
-        .then((res) => {
+        .then(res => {
           console.log('file', res);
           alert('Audio downloaded.');
           // loading false
@@ -106,7 +106,7 @@ const LatestScreen = () => {
           console.log('progress', received / total);
           setDownloadProgress((received / total) * 100);
         })
-        .then((res) => {
+        .then(res => {
           console.log('fileDownlod', res);
           // RNFetchBlob.android.actionViewIntent(res.path());
         })
@@ -118,20 +118,20 @@ const LatestScreen = () => {
 
   useEffect(() => {
     getPlaylists()
-      .then((res) => {
+      .then(res => {
         res.message ? setPlaylists(res.message) : setPlaylists(res);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
 
     getLatestAudios()
-      .then((res) => {
+      .then(res => {
         if (res.message) {
           setMessage(res.message);
         } else {
           setLatestsAudio(res);
         }
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -147,7 +147,7 @@ const LatestScreen = () => {
         )}
         <List>
           {latestAudios &&
-            latestAudios.map((audio) => {
+            latestAudios.map(audio => {
               let resourceLink = `${audio.audio}`;
               resourceLink = resourceLink.substring(9);
               let audioUrl = `${API_URL}${resourceLink}`;
@@ -159,7 +159,7 @@ const LatestScreen = () => {
 
               let data =
                 playlists &&
-                playlists.find((playlist) => playlist._id === audio.playlistId);
+                playlists.find(playlist => playlist._id === audio.playlistId);
 
               let audioName = `${data && data.nameEng} - ${audio.titleEng}`;
               return (
