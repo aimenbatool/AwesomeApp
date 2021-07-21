@@ -12,6 +12,7 @@ import {
   Content,
   Body,
   Thumbnail,
+  Toast,
 } from 'native-base';
 import {View, StyleSheet, Platform} from 'react-native';
 import {usePlayerContext} from '../contexts/PlayerContext';
@@ -77,16 +78,23 @@ const AudioScreen = ({route}) => {
 
     if (isIOS) {
       // loading true
+      Toast.show({
+        text: 'Downloading Started.',
+      });
       config(configOptions)
         .fetch('GET', audioURL)
         .then(res => {
-          console.log('file', res);
-          alert('Audio Downloaded.');
+          Toast.show({
+            text: 'Audio Downloaded.',
+            duration: 3000,
+          });
           // loading false
-          // RNFetchBlob.ios.previewDocument(`file://${res.path()}`);
         });
       return;
     } else {
+      Toast.show({
+        text: 'Downloading Started.',
+      });
       // set state loading
       config(configOptions)
         .fetch('GET', audioURL)
@@ -94,8 +102,10 @@ const AudioScreen = ({route}) => {
           console.log('progress', received / total);
         })
         .then(res => {
-          console.log('fileDownlod', res);
-          // RNFetchBlob.android.actionViewIntent(res.path());
+          Toast.show({
+            text: 'Audio Downloaded.',
+            duration: 3000,
+          });
         })
         .catch((errorMessage, statusCode) => {
           console.log('Error', errorMessage);

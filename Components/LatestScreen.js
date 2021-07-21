@@ -11,11 +11,11 @@ import {
   Right,
   Thumbnail,
   Text,
+  Toast,
 } from 'native-base';
 import {View, StyleSheet, Platform} from 'react-native';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import Globals from '../utils/Globals';
-// import playerIcon from '../assets/images/iconfinder__Soundcloud_798218.png';
 const {API_URL} = Globals;
 import RNFetchBlob from 'rn-fetch-blob';
 
@@ -86,19 +86,27 @@ const LatestScreen = () => {
 
     if (isIOS) {
       // loading true
+      Toast.show({
+        text: 'Downloading Started.',
+      });
       config(configOptions)
         .fetch('GET', audioURL)
         .progress({interval: 0.3}, (received, total) => {
-          console.log('progress', received / total);
           setDownloadProgress((received / total) * 100);
         })
         .then(res => {
-          console.log('file', res);
-          alert('Audio downloaded.');
+          // console.log('file', res);
+          Toast.show({
+            text: 'Audio Downloaded.',
+            duration: 3000,
+          });
           // loading false
         });
       return;
     } else {
+      Toast.show({
+        text: 'Downloading Started.',
+      });
       // set state loading
       config(configOptions)
         .fetch('GET', audioURL)

@@ -18,7 +18,7 @@ export const PlayerContext = React.createContext({
   goTo: () => null,
 });
 
-export const PlayerContextProvider = (props) => {
+export const PlayerContextProvider = props => {
   const [playerState, setPlayerState] = useState(null);
   const [currentTrack, setCurrentTrack] = useState(null);
 
@@ -34,7 +34,7 @@ export const PlayerContextProvider = (props) => {
     };
   }, []);
 
-  const play = async (track) => {
+  const play = async track => {
     if (!track) {
       if (currentTrack) {
         await TrackPlayer.play();
@@ -61,7 +61,7 @@ export const PlayerContextProvider = (props) => {
     await TrackPlayer.seekTo(position + parseInt(amount, 10));
   };
 
-  const goTo = async (amount) => {
+  const goTo = async amount => {
     await RNTrackPlayer.seekTo(amount);
   };
 

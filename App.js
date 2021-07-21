@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {I18nManager, ActivityIndicator} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {Container} from 'native-base';
+import {Container, Root} from 'native-base';
 import TrackPlayer from 'react-native-track-player';
 import {PlayerContextProvider} from './contexts/PlayerContext';
 import MainStackNavigator from './Navigators/MainStackNavigator';
@@ -27,19 +27,21 @@ const App = () => {
     });
   }, []);
   return (
-    <Container>
-      {isReady ? (
-        <PlayerContextProvider>
-          <NavigationContainer>
-            <MainStackNavigator />
-          </NavigationContainer>
-        </PlayerContextProvider>
-      ) : (
-        <Container>
-          <ActivityIndicator />
-        </Container>
-      )}
-    </Container>
+    <Root>
+      <Container>
+        {isReady ? (
+          <PlayerContextProvider>
+            <NavigationContainer>
+              <MainStackNavigator />
+            </NavigationContainer>
+          </PlayerContextProvider>
+        ) : (
+          <Container>
+            <ActivityIndicator />
+          </Container>
+        )}
+      </Container>
+    </Root>
   );
 };
 
