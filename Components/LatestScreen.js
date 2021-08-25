@@ -162,7 +162,6 @@ const LatestScreen = () => {
               let encodedUrl = encodeURI(audioUrl);
 
               let artResource = `${audio.artwork}`;
-              artResource = artResource.substring(9);
               let artwork = `${API_URL}${artResource}`;
 
               let data =

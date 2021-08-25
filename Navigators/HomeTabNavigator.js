@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 function HomeTabNavigator() {
   return (
     <Tab.Navigator
-      tabBar={(tabsProps) => (
+      tabBar={tabsProps => (
         <View style={styles.tabBar}>
           <MiniPlayer />
           <BottomTabBar {...tabsProps} />
@@ -22,13 +22,13 @@ function HomeTabNavigator() {
       )}
       initialRouteName="Latest"
       tabBarOptions={{
-        activeTintColor: 'black',
+        activeTintColor: 'white',
         safeAreaInsets: {
           bottom: 0,
         },
         labelStyle: {
           textAlign: 'center',
-          fontSize: 18,
+          fontSize: 20,
           fontFamily:
             Platform.OS === 'android'
               ? 'JameelNooriRegular'
@@ -37,7 +37,7 @@ function HomeTabNavigator() {
         tabStyle: {
           justifyContent: 'center',
         },
-        activeBackgroundColor: '#2394C7',
+        activeBackgroundColor: '#6497b1',
       }}>
       <Tab.Screen
         name="Latest"
