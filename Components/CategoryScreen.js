@@ -46,7 +46,6 @@ const CategoryScreen = ({navigation}) => {
         {message ? (
           <View style={styles.messageView}>
             <Text> {message} </Text>
-            <Text> Hello </Text>
           </View>
         ) : (
           <List>
@@ -66,7 +65,9 @@ const CategoryScreen = ({navigation}) => {
                         })
                       }>
                       <Left>
-                        <Text> {category.nameUr} </Text>
+                        <Text style={styles.categoryName}>
+                          {category.nameUr}
+                        </Text>
                       </Left>
                       <Body>
                         <Icon name="chevron-back-outline" />
@@ -93,5 +94,8 @@ let styles = StyleSheet.create({
   },
   message: {
     textAlign: 'center',
+  },
+  categoryName: {
+    fontFamily: 'JameelNooriRegular',
   },
 });

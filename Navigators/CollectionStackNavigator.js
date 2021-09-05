@@ -13,7 +13,10 @@ const CollectionStackNavigator = () => {
       <Stack.Screen
         name="Category"
         component={CategoryScreen}
-        options={{title: 'مجموعہ', headerTitleAlign: 'center'}}
+        options={{
+          title: 'مجموعہ',
+          headerTitleAlign: 'center',
+        }}
       />
       <Stack.Screen
         name="SubCategory"

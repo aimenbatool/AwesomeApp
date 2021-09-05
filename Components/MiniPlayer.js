@@ -84,10 +84,12 @@ let styles = StyleSheet.create({
     marginLeft: 18,
   },
   trackTitle: {
+    fontFamily: 'JameelNooriRegular',
     fontSize: 20,
   },
   category: {
     fontSize: 10,
+    fontFamily: 'JameelNooriRegular',
   },
   trackDetails: {
     flexDirection: 'row',

@@ -9,6 +9,7 @@ import {
   Container,
   Content,
 } from 'native-base';
+import {StyleSheet} from 'react-native';
 import Globals from '../utils/Globals';
 
 const SubCategoryScreen = ({route, navigation}) => {
@@ -29,10 +30,10 @@ const SubCategoryScreen = ({route, navigation}) => {
 
   useEffect(() => {
     getCategories()
-      .then((res) => {
+      .then(res => {
         setCategories(res);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,8 +43,8 @@ const SubCategoryScreen = ({route, navigation}) => {
       <Content>
         <List>
           {subCategories &&
-            subCategories.map((subCategory) => {
-              let data = categories.find((cat) => cat._id === subCategory);
+            subCategories.map(subCategory => {
+              let data = categories.find(cat => cat._id === subCategory);
 
               let navigtionRoute =
                 data && data.subCategories.length > 0
@@ -60,7 +61,9 @@ const SubCategoryScreen = ({route, navigation}) => {
                     })
                   }>
                   <Left>
-                    <Text> {data && data.nameUr} </Text>
+                    <Text style={styles.playlistItem}>
+                      {data && data.nameUr}
+                    </Text>
                   </Left>
                   <Body>
                     <Icon name="chevron-back-outline" />
@@ -75,3 +78,9 @@ const SubCategoryScreen = ({route, navigation}) => {
 };
 
 export default SubCategoryScreen;
+
+let styles = StyleSheet.create({
+  playlistItem: {
+    fontFamily: 'JameelNooriRegular',
+  },
+});

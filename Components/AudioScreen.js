@@ -141,7 +141,6 @@ const AudioScreen = ({route}) => {
               let encodedUrl = encodeURI(audioUrl);
 
               let artResource = `${audio.artwork}`;
-              artResource = artResource.substring(9);
               let artwork = `${API_URL}${artResource}`;
 
               let audioName = `${playlist && playlist.nameEng} - ${
@@ -209,6 +208,7 @@ export default AudioScreen;
 let styles = StyleSheet.create({
   TrackDetails: {
     textAlign: 'left',
+    fontFamily: 'JameelNooriRegular',
   },
   messageView: {
     alignItems: 'center',

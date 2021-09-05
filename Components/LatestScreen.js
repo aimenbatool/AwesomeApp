@@ -231,6 +231,7 @@ let styles = StyleSheet.create({
   TrackDetails: {
     textAlign: 'left',
     marginLeft: 5,
+    fontFamily: 'JameelNooriRegular',
   },
   messageView: {
     alignItems: 'center',

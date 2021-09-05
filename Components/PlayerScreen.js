@@ -101,10 +101,12 @@ let styles = StyleSheet.create({
   },
   trackTitle: {
     fontSize: 20,
+    fontFamily: 'JameelNooriRegular',
   },
   artistName: {
     fontSize: 16,
     color: 'grey',
+    fontFamily: 'JameelNooriRegular',
   },
   actionButtonsContainer: {
     marginTop: 15,

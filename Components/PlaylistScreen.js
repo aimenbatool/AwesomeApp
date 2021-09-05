@@ -60,7 +60,7 @@ function PlaylistScreen({route, navigation}) {
                     })
                   }>
                   <Left>
-                    <Text> {playlist.nameUr} </Text>
+                    <Text style={styles.playlistItem}> {playlist.nameUr} </Text>
                   </Left>
                   <Body>
                     <Text> ({playlist.items.length}) </Text>
@@ -82,6 +82,9 @@ let styles = StyleSheet.create({
     marginTop: 30,
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  playlistItem: {
+    fontFamily: 'JameelNooriRegular',
   },
   message: {
     textAlign: 'center',
