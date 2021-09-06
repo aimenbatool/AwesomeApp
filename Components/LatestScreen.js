@@ -171,16 +171,16 @@ const LatestScreen = () => {
               let audioName = `${data && data.nameEng} - ${audio.titleEng}`;
               return (
                 <ListItem thumbnail key={audio._id}>
-                  <Left>
+                  <Right>
                     <Thumbnail square source={{uri: artwork}} />
-                  </Left>
+                  </Right>
                   <Body>
                     <Text style={styles.TrackDetails}> {audio.titleUr} </Text>
                     <Text style={styles.TrackDetails} note numberOfLines={1}>
                       {data && data.nameUr}
                     </Text>
                   </Body>
-                  <Right>
+                  <Left>
                     <View style={{flexDirection: 'row'}}>
                       {playerContext.isPaused ||
                       playerContext.isEmpty ||
@@ -215,7 +215,7 @@ const LatestScreen = () => {
                         <Icon name="download" />
                       </Button>
                     </View>
-                  </Right>
+                  </Left>
                 </ListItem>
               );
             })}

@@ -9,6 +9,7 @@ import {
   Container,
   Content,
   View,
+  Right,
 } from 'native-base';
 import Globals from '../utils/Globals';
 import {StyleSheet} from 'react-native';
@@ -64,14 +65,14 @@ const CategoryScreen = ({navigation}) => {
                           category: category,
                         })
                       }>
-                      <Left>
+                      <Right>
                         <Text style={styles.categoryName}>
                           {category.nameUr}
                         </Text>
-                      </Left>
-                      <Body>
+                      </Right>
+                      <Left>
                         <Icon name="chevron-back-outline" />
-                      </Body>
+                      </Left>
                     </ListItem>
                   );
                 }

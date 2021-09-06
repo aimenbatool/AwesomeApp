@@ -5,7 +5,7 @@ import {StyleSheet} from 'react-native';
 import {View, Text} from 'native-base';
 import {PlayerContext} from '../contexts/PlayerContext';
 
-const buildTime = (totalSeconds) => {
+const buildTime = totalSeconds => {
   const hours = Math.floor(totalSeconds / 3600);
   totalSeconds %= 3600;
   const minutes = Math.floor(totalSeconds / 60);
@@ -41,13 +41,13 @@ class ProgressSlider extends ProgressComponent {
           minimumTrackTintColor="#7AAFDD"
           maximumTrackTintColor="#ECF3F5"
           value={this.state.position}
-          onValueChange={(value) => {
+          onValueChange={value => {
             this.context.goTo(value);
           }}
         />
         <View style={styles.timing}>
           <Text>{this.currentTime()}</Text>
-          <Text>-{this.totalTime()}</Text>
+          <Text>{this.totalTime()} - </Text>
         </View>
       </>
     );
