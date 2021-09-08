@@ -5,6 +5,7 @@ import {
   ListItem,
   Text,
   Body,
+  Right,
   Container,
   Content,
 } from 'native-base';
@@ -62,9 +63,9 @@ function PlaylistScreen({route, navigation}) {
                   <Left>
                     <Text style={styles.playlistItem}> {playlist.nameUr} </Text>
                   </Left>
-                  <Body>
+                  <Right>
                     <Text> ({playlist.items.length}) </Text>
-                  </Body>
+                  </Right>
                 </ListItem>
               );
             })}

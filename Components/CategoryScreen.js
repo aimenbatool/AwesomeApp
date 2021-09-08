@@ -65,14 +65,14 @@ const CategoryScreen = ({navigation}) => {
                           category: category,
                         })
                       }>
-                      <Right>
+                      <Left>
                         <Text style={styles.categoryName}>
                           {category.nameUr}
                         </Text>
-                      </Right>
-                      <Left>
-                        <Icon name="chevron-back-outline" />
                       </Left>
+                      <Right>
+                        <Icon name="chevron-back-outline" />
+                      </Right>
                     </ListItem>
                   );
                 }
