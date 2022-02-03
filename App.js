@@ -10,6 +10,7 @@ const App = () => {
   const [isReady, setIsReady] = React.useState(false);
 
   useEffect(() => {
+    
     TrackPlayer.setupPlayer().then(() => {
       console.log('player is setup');
 
