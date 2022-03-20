@@ -9,7 +9,10 @@ const Contact = () => {
         دروس کے حوالے سے معلومات اور رابطہ کیلئے درج ذیل نمبروں پر رابطہ کریں۔{' '}
       </Text>
       <Text>{''}</Text>
-      <Text style={{fontSize:18 , fontFamily:"JameelNooriRegular"}}>  مولانا افتخار احمد غدیری</Text>
+      <Text style={{fontSize: 18, fontFamily: 'JameelNooriRegular'}}>
+        {' '}
+        مولانا افتخار احمد غدیری
+      </Text>
       <Text>{''}</Text>
 
       <View style={{flexDirection: 'row'}}>
@@ -42,8 +45,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 
-  text:{
-      fontSize:15,
-      fontFamily:"JameelNooriRegular"
-  }
+  text: {
+    fontSize: 15,
+    fontFamily: 'JameelNooriRegular',
+  },
 });
