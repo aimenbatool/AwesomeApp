@@ -1,3 +1,3 @@
 export default {
-  API_URL: 'http://api.ghadeeri.pk/',
+  API_URL: 'https://api.ghadeeri.pk/',
 };
