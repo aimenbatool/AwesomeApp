@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, Linking} from 'react-native';
 import React from 'react';
 import Icon1 from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -29,16 +29,30 @@ const About = () => {
         </View>
       </View>
       <View style={{justifyContent: 'center', flexDirection: 'row', flex: 0.1}}>
-        <TouchableOpacity>
-          <Icon1
-            name="facebook"
-            color={'#6497b1'}
-            size={25}
-            style={{marginHorizontal: 10}}
-          />
+        <TouchableOpacity style={styles.socialIcons}>
+          <Text
+            onPress={() =>
+              Linking.openURL(
+                'https://web.facebook.com/iftikhar.ahmed.92351995',
+              )
+            }>
+            <Icon1
+              name="facebook"
+              color={'#6497b1'}
+              size={25}
+              style={{marginHorizontal: 10}}
+            />
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Icon name="youtube" color={'#6497b1'} size={28} />
+        <TouchableOpacity style={styles.socialIcons}>
+          <Text
+            onPress={() =>
+              Linking.openURL(
+                'https://www.youtube.com/channel/UCaJlsSEyMlvM1cBQz0cAFPQ',
+              )
+            }>
+            <Icon name="youtube" color={'#6497b1'} size={28} />
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -72,5 +86,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'JameelNooriRegular',
     fontSize: 20,
+  },
+  socialIcons: {
+    padding: 5,
   },
 });
