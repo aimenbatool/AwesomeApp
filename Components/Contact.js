@@ -5,30 +5,19 @@ import Icon from 'react-native-vector-icons/Entypo';
 const Contact = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
+      <Text style={styles.heading}>
         دروس کے حوالے سے معلومات اور رابطہ کیلئے درج ذیل نمبروں پر رابطہ کریں۔{' '}
       </Text>
       <Text>{''}</Text>
-      <Text style={{fontSize:18 , fontFamily:"JameelNooriRegular"}}>  مولانا افتخار احمد غدیری</Text>
-      <Text>{''}</Text>
-
+      <Text style={styles.body}>مولانا افتخار احمد غدیری</Text>
       <View style={{flexDirection: 'row'}}>
-        <Icon
-          name="phone"
-          color={'#6497b1'}
-          size={18}
-          style={{flex: 0.1}}></Icon>
-        <Text style={styles.text}> 3593593 307 92+ </Text>
+        <Icon name="phone" color={'#6497b1'} size={18} />
+        <Text style={styles.body}> 3593593 307 92+ </Text>
       </View>
-
       <View style={{flexDirection: 'row'}}>
-        <Icon
-          name="phone"
-          color={'#6497b1'}
-          size={18}
-          style={{flex: 0.1}}></Icon>
+        <Icon name="phone" color={'#6497b1'} size={18} />
 
-        <Text style={styles.text}> 8696677 312 92+</Text>
+        <Text style={styles.body}> 8696677 312 92+</Text>
       </View>
     </View>
   );
@@ -42,8 +31,13 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 
-  text:{
-      fontSize:15,
-      fontFamily:"JameelNooriRegular"
-  }
+  heading: {
+    fontSize: 25,
+    fontFamily: 'JameelNooriRegular',
+  },
+
+  body: {
+    fontSize: 18,
+    fontFamily: 'JameelNooriRegular',
+  },
 });
