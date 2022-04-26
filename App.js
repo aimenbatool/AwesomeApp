@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {I18nManager, ActivityIndicator , Alert} from 'react-native';
+import {I18nManager, ActivityIndicator, Alert} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {Container, Root} from 'native-base';
 import TrackPlayer from 'react-native-track-player';
@@ -13,7 +13,7 @@ const App = () => {
 
   // useEffect(() => {
   //   // Assume a message-notification contains a "type" property in the data payload of the screen to open
-      
+
   //     const unsubscribe =  messaging().onMessage(async remoteMessage =>{
   //        console.log("recieved in foreground " , remoteMessage)
   //        Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
@@ -34,34 +34,29 @@ const App = () => {
   //     });
   // }, []);
 
-  
   // const unsubscribe = async ()=>{
 
   //   messaging().onMessage(async remoteMessage => {
   //     Alert.alert('A new FCM message arrived!');
   //   });
 
-   
   // }
-  
 
   const sendFcmToken = async () => {
     try {
       await messaging().registerDeviceForRemoteMessages();
       const token = await messaging().getToken();
-      console.log("token " ,token)
-      try{
-      const res=  await axios.post('http://192.168.0.104:5000/register', {token});
-      console.log("hii",JSON.stringify(res))
+      console.log('token ', token);
+      try {
+        const res = await axios.post('http://192.168.0.104:5000/register', {
+          token,
+        });
+        console.log('hii', JSON.stringify(res));
+      } catch (err) {
+        console.log('error->', err.response.data);
       }
-      catch(err){
-      console.log("error->",err.response.data);
-
-      }
-
-
     } catch (err) {
-      console.log("error->",err.response.data);
+      console.log('error->', err.response.data);
       return;
     }
   };
@@ -72,7 +67,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    
     TrackPlayer.setupPlayer().then(() => {
       console.log('player is setup');
 
