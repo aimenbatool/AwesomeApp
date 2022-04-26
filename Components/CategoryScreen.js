@@ -4,7 +4,6 @@ import {
   List,
   ListItem,
   Text,
-  Body,
   Icon,
   Container,
   Content,

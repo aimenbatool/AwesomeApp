@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {StyleSheet, Image, View, Text} from 'react-native';
 import React from 'react';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -6,30 +6,23 @@ import Icon1 from 'react-native-vector-icons/Entypo';
 
 const DrawerContent = props => {
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <DrawerContentScrollView
         {...props}
-        contentContainerStyle={{backgroundColor: '#6497b1', padding: 30}}>
+        contentContainerStyle={styles.contentContainerStyle}>
         <Image
           source={require('../assets/images/logo.jpeg')}
-          style={{
-            height: 90,
-            width: 90,
-            borderRadius: 100 / 2,
-            alignSelf: 'center',
-            marginVertical: 20,
-          }}
+          style={styles.profileImage}
         />
         <Text style={{fontSize: 18, alignSelf: 'center', color: 'white'}}>
-          Ghaderi.pk
+          Ghadeeri.pk
         </Text>
       </DrawerContentScrollView>
-
       <View style={styles.drawerSection}>
         <DrawerItem
           icon={() => <Icon name="book" color={'#6497b1'} size={28} />}
           label="ہمارے بارے میں "
-          labelStyle={{fontSize: 20, fontFamily: 'JameelNooriRegular'}}
+          labelStyle={styles.labelStyle}
           activeBackgroundColor="blue"
           onPress={() => {
             props.navigation.navigate('About');
@@ -38,7 +31,7 @@ const DrawerContent = props => {
         <DrawerItem
           icon={() => <Icon1 name="phone" color={'#6497b1'} size={30} />}
           label="رابطہ کریں"
-          labelStyle={{fontSize: 20, fontFamily: 'JameelNooriRegular'}}
+          labelStyle={styles.labelStyle}
           onPress={() => {
             props.navigation.navigate('Contact');
           }}
@@ -51,47 +44,31 @@ const DrawerContent = props => {
 export default DrawerContent;
 
 const styles = StyleSheet.create({
-  drawerContent: {
+  container: {
     flex: 1,
   },
-  userInfoSection: {
-    paddingLeft: 20,
+  contentContainerStyle: {
+    backgroundColor: '#6497b1',
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
   },
-  title: {
-    fontSize: 16,
-    marginTop: 3,
-    fontWeight: 'bold',
-  },
-  caption: {
-    fontSize: 14,
-    lineHeight: 14,
-  },
-  row: {
-    marginTop: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  section: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 15,
-  },
-  paragraph: {
-    fontWeight: 'bold',
-    marginRight: 3,
+  drawerContainer: {
+    flex: 1,
   },
   drawerSection: {
-    marginBottom: 400,
+    flex: 3,
+    flexDirection: 'column',
   },
-  bottomDrawerSection: {
-    marginBottom: 15,
-    borderTopColor: '#f4f4f4',
-    borderTopWidth: 1,
+  profileImage: {
+    height: 90,
+    width: 90,
+    borderRadius: 100 / 2,
+    alignSelf: 'center',
+    marginVertical: 10,
   },
-  preference: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+  labelStyle: {
+    fontSize: 20,
+    fontFamily: 'JameelNooriRegular',
   },
 });
