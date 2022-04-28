@@ -17,6 +17,12 @@ const Drawstack = () => {
         headerShown: true,
         headerTitle: 'غدیری',
         headerTitleAlign: 'center',
+<<<<<<< HEAD
+=======
+        headerStyle: {
+          backgroundColor: '#F5FAFA',
+        },
+>>>>>>> 4ae845ef28d7096631d1dce77dad26cf12b92f84
       }}>
       <Drawer.Screen name="Home" component={HomeTabNavigator} />
       <Drawer.Screen name="PlayerScreen" component={PlayerScreen} />

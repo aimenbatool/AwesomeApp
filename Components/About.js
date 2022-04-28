@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import {StyleSheet, Text, View, Image} from 'react-native';
+=======
+import {StyleSheet, Text, View, Image, Linking} from 'react-native';
+>>>>>>> 4ae845ef28d7096631d1dce77dad26cf12b92f84
 import React from 'react';
 import Icon1 from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -8,6 +12,7 @@ const About = () => {
   return (
     <View style={styles.container}>
       <View style={{flex: 1}}>
+<<<<<<< HEAD
         <View style={{backgroundColor: '#6497b1', flex: 0.4}}>
           <Image
             // eslint-disable-next-line no-undef
@@ -38,6 +43,18 @@ const About = () => {
               fontFamily: 'JameelNooriRegular',
               fontSize: 15,
             }}>
+=======
+        <View style={{backgroundColor: '#6497b1'}}>
+          <Image
+            source={require('../assets/images/pic.png')}
+            style={styles.profileImage}
+          />
+          <Text style={styles.title}> مولانا افتخار احمد غدیری</Text>
+        </View>
+
+        <View style={{padding: 10}}>
+          <Text style={styles.bio}>
+>>>>>>> 4ae845ef28d7096631d1dce77dad26cf12b92f84
             مولانا افتخار احمد غدیری نے ابتدائی دینی تعلیم اسلام آباد میں مدرسہ
             جامعہ اہل بیت علہم السلام سے حاصل کی، پھر اعلی دینی تعلیم حاصل کرنے
             کے لیے ایران گئے اور چار مہینے مشہد مقدس سے تعلیم حاصل کی اور پھر قم
@@ -49,6 +66,7 @@ const About = () => {
         </View>
       </View>
       <View style={{justifyContent: 'center', flexDirection: 'row', flex: 0.1}}>
+<<<<<<< HEAD
         <TouchableOpacity>
           <Icon1
             name="facebook"
@@ -59,6 +77,33 @@ const About = () => {
         <TouchableOpacity>
           <Icon name="youtube" color={'#6497b1'} size={28}></Icon>
         </TouchableOpacity>
+=======
+        <TouchableOpacity style={styles.socialIcons}>
+          <Text
+            onPress={() =>
+              Linking.openURL(
+                'https://web.facebook.com/iftikhar.ahmed.92351995',
+              )
+            }>
+            <Icon1
+              name="facebook"
+              color={'#6497b1'}
+              size={25}
+              style={{marginHorizontal: 10}}
+            />
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialIcons}>
+          <Text
+            onPress={() =>
+              Linking.openURL(
+                'https://www.youtube.com/channel/UCaJlsSEyMlvM1cBQz0cAFPQ',
+              )
+            }>
+            <Icon name="youtube" color={'#6497b1'} size={28} />
+          </Text>
+        </TouchableOpacity>
+>>>>>>> 4ae845ef28d7096631d1dce77dad26cf12b92f84
       </View>
     </View>
   );
@@ -71,4 +116,31 @@ const styles = StyleSheet.create({
     flex: 1,
     // padding: 20,
   },
+<<<<<<< HEAD
+=======
+  title: {
+    fontSize: 25,
+    textAlign: 'center',
+    fontWeight: '500',
+    color: 'white',
+    fontFamily: 'JameelNooriRegular',
+  },
+  profileImage: {
+    height: 120,
+    width: 120,
+    alignSelf: 'center',
+    // marginVertical: 30,
+    marginTop: 30,
+    marginBottom: 15,
+    borderRadius: 10,
+  },
+  bio: {
+    textAlign: 'center',
+    fontFamily: 'JameelNooriRegular',
+    fontSize: 20,
+  },
+  socialIcons: {
+    padding: 5,
+  },
+>>>>>>> 4ae845ef28d7096631d1dce77dad26cf12b92f84
 });
