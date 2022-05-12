@@ -136,8 +136,8 @@ android {
         applicationId "com.ghadeeri.pk"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7
-        versionName "0.7"
+        versionCode 8
+        versionName "0.8"
     }
     splits {
         abi {
@@ -197,7 +197,8 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
-    implementation ('com.google.firebase:firebase-analytics')
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
+
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

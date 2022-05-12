@@ -11,47 +11,16 @@ import axios from 'axios';
 const App = () => {
   const [isReady, setIsReady] = React.useState(false);
 
-  // useEffect(() => {
-  //   // Assume a message-notification contains a "type" property in the data payload of the screen to open
-
-  //     const unsubscribe =  messaging().onMessage(async remoteMessage =>{
-  //        console.log("recieved in foreground " , remoteMessage)
-  //        Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-  //      })
-  //      return unsubscribe;
-  //   }, []);
-
-  //   // Check whether an initial notification is available
-  //   messaging()
-  //     .getInitialNotification()
-  //     .then(remoteMessage => {
-  //       if (remoteMessage) {
-  //         console.log(
-  //           'Notification caused app to open from quit state:',
-  //           remoteMessage.notification,
-  //         );
-  //       }
-  //     });
-  // }, []);
-
-  // const unsubscribe = async ()=>{
-
-  //   messaging().onMessage(async remoteMessage => {
-  //     Alert.alert('A new FCM message arrived!');
-  //   });
-
-  // }
-
   const sendFcmToken = async () => {
+    console.log('-- ReactApp :  SendFCMToken() --');
     try {
       await messaging().registerDeviceForRemoteMessages();
       const token = await messaging().getToken();
-      console.log('token ', token);
+      console.log('MobileAap: Toke => ', token);
       try {
-        const res = await axios.post('http://192.168.0.104:5000/register', {
+        await axios.post('https://api.ghadeeri.pk/register', {
           token,
         });
-        console.log('hii', JSON.stringify(res));
       } catch (err) {
         console.log('error->', err.response.data);
       }
@@ -62,13 +31,9 @@ const App = () => {
   };
 
   useEffect(() => {
-    sendFcmToken();
-    // unsubscribe()
-  }, []);
-
-  useEffect(() => {
     TrackPlayer.setupPlayer().then(() => {
       console.log('player is setup');
+      sendFcmToken();
 
       TrackPlayer.updateOptions({
         capabilities: [

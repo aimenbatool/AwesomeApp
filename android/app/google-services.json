@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "190967627940",
-    "project_id": "push-notification-test-2f67a",
-    "storage_bucket": "push-notification-test-2f67a.appspot.com"
+    "project_number": "57201141397",
+    "project_id": "ghadeeripk-41b33",
+    "storage_bucket": "ghadeeripk-41b33.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:190967627940:android:548eb17717a100a1cca631",
+        "mobilesdk_app_id": "1:57201141397:android:2fb25b49a84798239a9d9c",
         "android_client_info": {
           "package_name": "com.ghadeeri.pk"
         }
       },
       "oauth_client": [
         {
-          "client_id": "190967627940-8vgo94coev37ur82fiuisuvcvb25fbq2.apps.googleusercontent.com",
+          "client_id": "57201141397-g5eo8os9lvhs3cd8bvbr0do5ipui4op3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDZoB6KoaaZTh6UIxP0jwob3qko5TVtrhU"
+          "current_key": "AIzaSyDfpDuXm7mqRsPSxC6ap0t18NohGzPSfew"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "190967627940-8vgo94coev37ur82fiuisuvcvb25fbq2.apps.googleusercontent.com",
+              "client_id": "57201141397-g5eo8os9lvhs3cd8bvbr0do5ipui4op3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
