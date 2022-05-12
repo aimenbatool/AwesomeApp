@@ -12,11 +12,9 @@ const App = () => {
   const [isReady, setIsReady] = React.useState(false);
 
   const sendFcmToken = async () => {
-    console.log('-- ReactApp :  SendFCMToken() --');
     try {
       await messaging().registerDeviceForRemoteMessages();
       const token = await messaging().getToken();
-      console.log('MobileAap: Toke => ', token);
       try {
         await axios.post('https://api.ghadeeri.pk/register', {
           token,
