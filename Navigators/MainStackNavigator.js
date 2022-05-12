@@ -6,10 +6,16 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import DrawerContents from './DrawerContent';
 import About from '../Components/About';
 import Contact from '../Components/Contact';
+import Icon from 'react-native-vector-icons/Entypo';
+// import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const Drawstack = () => {
+  const navigation = useNavigation();
   return (
     <Drawer.Navigator
       drawerContent={props => <DrawerContents {...props} />}
@@ -20,6 +26,15 @@ const Drawstack = () => {
         headerStyle: {
           backgroundColor: '#F5FAFA',
         },
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Latest');
+            }}
+            style={styles.headerIcon}>
+            <Icon name="home" color={'#505050'} size={28} />
+          </TouchableOpacity>
+        ),
       }}>
       <Drawer.Screen name="Home" component={HomeTabNavigator} />
       <Drawer.Screen name="PlayerScreen" component={PlayerScreen} />
@@ -43,3 +58,9 @@ const MainStackNavigator = () => {
 };
 
 export default MainStackNavigator;
+
+const styles = StyleSheet.create({
+  headerIcon: {
+    marginHorizontal: 10,
+  },
+});
