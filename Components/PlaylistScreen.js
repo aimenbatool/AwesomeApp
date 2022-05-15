@@ -44,7 +44,7 @@ function PlaylistScreen({route, navigation}) {
 
   return (
     <Container>
-      <Content>
+      <Content style={styles.content}>
         <View style={styles.messageView}>
           <Text style={styles.message}>{message}</Text>
         </View>
@@ -89,5 +89,8 @@ let styles = StyleSheet.create({
   },
   message: {
     textAlign: 'center',
+  },
+  content: {
+    marginBottom: 40,
   },
 });

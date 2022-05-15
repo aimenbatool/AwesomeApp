@@ -42,7 +42,7 @@ const CategoryScreen = ({navigation}) => {
 
   return (
     <Container>
-      <Content>
+      <Content style={styles.content}>
         {message ? (
           <View style={styles.messageView}>
             <Text> {message} </Text>
@@ -50,7 +50,7 @@ const CategoryScreen = ({navigation}) => {
         ) : (
           <List>
             {categories &&
-              categories.map(category => {
+              categories.reverse().map(category => {
                 const {subCategories} = category;
                 let navigationRoute =
                   subCategories.length > 0 ? 'SubCategory' : 'Playlist';
@@ -97,5 +97,8 @@ let styles = StyleSheet.create({
   },
   categoryName: {
     fontFamily: 'JameelNooriRegular',
+  },
+  content: {
+    marginBottom: 50,
   },
 });

@@ -146,7 +146,7 @@ const LatestScreen = () => {
   // download audio code
 
   return (
-    <Container>
+    <Container style={styles.content}>
       <Content>
         {message && (
           <View style={styles.messageView}>
@@ -236,5 +236,8 @@ let styles = StyleSheet.create({
   messageView: {
     alignItems: 'center',
     marginTop: 30,
+  },
+  content: {
+    marginBottom: 30,
   },
 });
